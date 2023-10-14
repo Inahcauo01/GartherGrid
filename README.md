@@ -41,6 +41,3 @@ Assurez-vous d'avoir les éléments suivants installés avant de travailler sur 
 
 Les contributions à ce projet sont les bienvenues. N'hésitez pas à ouvrir des problèmes, à proposer des demandes d'extraction et à contribuer au code.
 
-## Licence
-
-Ce projet est sous licence MIT. Pour plus de détails, consultez le fichier [LICENSE](LICENSE).
