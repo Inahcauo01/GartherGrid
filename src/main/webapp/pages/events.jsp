@@ -1,21 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<%--Head--%>
+<jsp:include page="../components/header.jsp"></jsp:include>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind</title>
-    <!-- styles tailwind -->
-    <link rel="stylesheet" href="../src/styles/style-tailwind.css">
-    <!-- google fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Chau+Philomene+One:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap"
-        rel="stylesheet">
-</head>
-
-<body class="bg-primary-100">
+<%--Content body--%>
     <!-- B Header -->
     <header>
         <nav class="bg-white border-gray-200 px-4 lg:px-6 py-3 dark:bg-primary-100">
@@ -784,10 +770,10 @@
             </div>
         </div>
     </footer>
-    <!-- E footer -->
 
+<!-- B footer -->
+<jsp:include page="../components/footer.jsp"></jsp:include>
+<!-- E footer -->
 
-    <script src="../src/js/flowbite.min.js"></script>
-</body>
-
-</html>
+<%--links js--%>s
+<jsp:include page="../components/includes/js.jsp"></jsp:include>
