@@ -14,13 +14,23 @@ public class Category {
     private Long id;
     private String name;
     private String description;
+    private String image;
 
     public Category() {
     }
 
-    public Category(String name, String description) {
+    public Category(String name, String description, String image) {
         this.name = name;
         this.description = description;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Long getId() {
@@ -49,10 +59,10 @@ public class Category {
 
     @Override
     public String toString() {
-        return "Comment{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+        return "Category{" +
+                "name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 
@@ -61,6 +71,7 @@ public class Category {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Category category = (Category) o;
-        return Objects.equals(id, category.id) && Objects.equals(name, category.name) && Objects.equals(description, category.description);
+        return Objects.equals(id, category.id) && Objects.equals(name, category.name) && Objects.equals(description, category.description) && Objects.equals(image, category.image);
     }
+
 }

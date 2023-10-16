@@ -6,7 +6,6 @@
 </head>
 <body>
 <h1><%= "Hello World!" %></h1>
-<br/>
-<a href="helloServlet">Hello Servlet</a>
+<%--<a href="event">event here</a>--%>
 </body>
 </html>

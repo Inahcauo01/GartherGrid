@@ -18,6 +18,7 @@ public class Event {
     private Time hour;
     private String location;
     private String description;
+    private String image;
     @ManyToOne
     private Category category;
     @OneToMany
@@ -26,14 +27,23 @@ public class Event {
     public Event() {
     }
 
-    public Event(String name, Date date, Time hour, String location, String description, Category category, List<Comment> comment) {
+    public Event(String name, Date date, Time hour, String location, String description, String image, Category category, List<Comment> comment) {
         this.name = name;
         this.date = date;
         this.hour = hour;
         this.location = location;
         this.description = description;
+        this.image = image;
         this.category = category;
         this.comment = comment;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public void setId(Long id) {
@@ -93,7 +103,6 @@ public class Event {
                 ", location='" + location + '\'' +
                 ", description='" + description + '\'' +
                 ", category=" + category +
-                ", comment=" + comment +
                 '}';
     }
 
@@ -102,7 +111,7 @@ public class Event {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
-        return Objects.equals(id, event.id) && Objects.equals(name, event.name) && Objects.equals(date, event.date) && Objects.equals(hour, event.hour) && Objects.equals(location, event.location) && Objects.equals(description, event.description) && Objects.equals(category, event.category) && Objects.equals(comment, event.comment);
+        return Objects.equals(name, event.name) && Objects.equals(date, event.date) && Objects.equals(hour, event.hour) && Objects.equals(location, event.location) && Objects.equals(description, event.description) && Objects.equals(image, event.image) && Objects.equals(category, event.category);
     }
 
 }
