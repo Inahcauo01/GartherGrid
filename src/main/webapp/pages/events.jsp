@@ -1,5 +1,5 @@
 <%--Head--%>
-<jsp:include page="../components/header.jsp"></jsp:include>
+<jsp:include page="/components/header.jsp"></jsp:include>
 
 <%--Content body--%>
     <!-- B Header -->
