@@ -1,5 +1,5 @@
 <!-- style tailwind -->
-<link rel="stylesheet" href="src/styles/style-tailwind.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/src/styles/style-tailwind.css">
 <!-- google fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
