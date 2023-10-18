@@ -14,14 +14,19 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/comments")
+@WebServlet(urlPatterns = {"/comments", "/deleteComment", "/editComment"})
 public class CemmentServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Comment> comments = new CommentService().getAllComments();
-        req.setAttribute("comments", comments);
-        req.getRequestDispatcher("/WEB-INF/commentSection.jsp").forward(req, resp);
+        String action = req.getServletPath();
+        if (action.equalsIgnoreCase("/deleteComment")){
+            doDelete(req, resp);
+        }else {
+            List<Comment> comments = new CommentService().getAllComments();
+            req.setAttribute("comments", comments);
+            req.getRequestDispatcher("/WEB-INF/commentSection.jsp").forward(req, resp);
+        }
 
     }
 
@@ -41,5 +46,16 @@ public class CemmentServlet extends HttpServlet {
         List<Comment> comments = commentService.getAllComments();
         req.setAttribute("comments", comments);
         req.getRequestDispatcher("/WEB-INF/commentSection.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        Long commentId = Long.valueOf(req.getParameter("id"));
+
+        CommentService commentService = new CommentService();
+        commentService.deleteComment(commentId);
+
+        resp.sendRedirect(req.getContextPath() + "/comments");
     }
 }
