@@ -29,7 +29,7 @@ public class Event {
     public Event() {
     }
 
-    public Event(String name, Date date, Time hour, String location, String description, String image, Integer nbrStandard, Integer nbrVIP, Category category, List<Comment> comment) {
+    public Event(String name, Date date, Time hour, String location, String description, String image, Integer nbrStandard, Integer nbrVIP, Category category) {
         this.name = name;
         this.date = date;
         this.hour = hour;
@@ -39,7 +39,6 @@ public class Event {
         this.nbrStandard = nbrStandard;
         this.nbrVIP = nbrVIP;
         this.category = category;
-        this.comment = comment;
     }
 
     public String getImage() {
