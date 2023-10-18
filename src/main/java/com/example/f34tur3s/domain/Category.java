@@ -19,10 +19,10 @@ public class Category {
     public Category() {
     }
 
-    public Category(String name, String description, String image) {
+    public Category(String name, String description) {
         this.name = name;
         this.description = description;
-        this.image = image;
+//        this.image = image;
     }
 
     public String getImage() {
