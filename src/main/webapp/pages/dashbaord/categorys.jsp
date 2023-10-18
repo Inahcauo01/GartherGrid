@@ -24,7 +24,7 @@
                         <div class="flex justify-between border-b pb-4 dark:border-gray-700 dark:text-gray-400">
                             <h2 class="text-xl font-bold">Categorys</h2>
                             <%--btn add--%>
-                            <button data-modal-target="save-update-modal" data-modal-toggle="save-update-modal"
+                            <button onclick="addCategory()" data-modal-target="save-update-modal" data-modal-toggle="save-update-modal"
                                     class="px-4 py-2 text-white rounded-md select-none bg-second-100">Add</button>
                             <%--modal--%>
                             <div id="save-update-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
@@ -38,7 +38,7 @@
                                             <div class="container px-4 mx-auto"></div>
                                             <div class="mb-6 flex flex-col items-center">
                                                 <label class="block mb-2 text-sm font-medium dark:text-gray-400"
-                                                       for="">Your Picture</label>
+                                                       for="">Picture</label>
                                                 <div class="py-2 shrink-0">
                                                     <img class="object-cover w-32 h-32 rounded-full"
                                                          src="https://i.postimg.cc/RhQYkKYk/pexels-italo-melo-2379005.jpg"
@@ -46,7 +46,7 @@
                                                 </div>
                                                 <label class="block pt-2">
                                                     <span class="sr-only ">Choose profile photo</span>
-                                                    <input type="file"
+                                                    <input type="file" name="picture"
                                                            class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold dark:file:bg-gray-600 dark:file:text-gray-200 dark:hover:file:bg-gray-700 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 ">
                                                 </label>
                                             </div>
@@ -56,7 +56,7 @@
                                                 </label>
                                                 <input
                                                         class="block w-full px-4 py-3 mb-2 text-sm placeholder-gray-500 bg-white border rounded dark:text-gray-400 dark:placeholder-gray-500 dark:border-primary-50 dark:bg-primary-100"
-                                                        type="text" name="" placeholder="saadmomo4">
+                                                        type="text" name="username" placeholder="saadmomo4">
                                             </div>
                                             <div class="mb-6">
                                                 <label class="block mb-2 text-sm font-medium dark:text-gray-400" for="">
@@ -64,7 +64,7 @@
                                                 </label>
                                                 <input
                                                         class="block w-full px-4 py-3 mb-2 text-sm placeholder-gray-500 bg-white border rounded dark:text-gray-400 dark:placeholder-gray-500 dark:border-primary-50 dark:bg-primary-100"
-                                                        type="text" name="" placeholder="saad">
+                                                        type="text" name="fullname" placeholder="saad">
                                             </div>
                                             <div class="mb-6">
                                                 <label class="block mb-2 text-sm font-medium dark:text-gray-400" for="">
@@ -72,15 +72,15 @@
                                                 </label>
                                                 <input
                                                         class="block w-full px-4 py-3 mb-2 text-sm placeholder-gray-500 bg-white border rounded dark:text-gray-400 dark:placeholder-gray-500 dark:border-primary-50 dark:bg-primary-100"
-                                                        type="text" name="" disabled placeholder="saad@gmail.com">
+                                                        type="text" name="email" disabled placeholder="saad@gmail.com">
                                             </div>
                                             <div class="mb-6">
                                                 <label class="mr-2">
-                                                    <input type="radio" checked name="inline-radio">
+                                                    <input type="radio" checked name="male">
                                                     <span class="ml-2 dark:text-gray-400">Male</span>
                                                 </label>
                                                 <label>
-                                                    <input type="radio" name="inline-radio" value="option 2">
+                                                    <input type="radio" name="female" value="option 2">
                                                     <span class="ml-2 dark:text-gray-400">Female</span>
                                                 </label>
                                             </div>
@@ -90,8 +90,8 @@
                                                 <div class="relative">
                                                     <select
                                                             class="block w-full px-4 py-3 mb-2 text-sm placeholder-gray-500 bg-white border rounded appearance-none dark:text-gray-400 dark:border-primary-50 dark:bg-primary-100"
-                                                            name="field-name">
-                                                        <option>Manager </option>
+                                                            name="job">
+                                                        <option>Manager</option>
                                                         <option>CEO</option>
                                                         <option>Assistant</option>
                                                         <option>Designer</option>
@@ -112,13 +112,13 @@
                                                        for="">Message</label>
                                                 <textarea
                                                         class="block w-full px-4 py-3 mb-2 text-sm placeholder-gray-500 bg-white border rounded dark:text-gray-400 dark:border-primary-50 dark:bg-primary-100"
-                                                        name="field-name" rows="5" placeholder="Write something..."></textarea>
+                                                        name="message" rows="5" placeholder="Write something..."></textarea>
                                             </div>
                                     </div>
                                     <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                                        <button type="button"
+                                        <button type="button" name="save"
                                                 class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-blue-500 border border-transparent border-blue-600 rounded-md shadow-sm bg-blue-50 hover:text-gray-100 hover:bg-blue-700 focus:outline-none dark:hover:bg-blue-500 dark:text-gray-100 dark:bg-blue-400 focus:ring-2 focus:ring-offset-2 dark:focus:ring-0 dark:focus:ring-offset-0 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">Save</button>
-                                        <button data-modal-hide="save-update-modal"
+                                        <button type="button" data-modal-hide="save-update-modal"
                                                 class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-700 dark:text-gray-100 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm dark:focus:ring-0 dark:focus:ring-offset-0">Cancel</button>
                                     </div>
                                     </form>
@@ -166,7 +166,7 @@
                                     </td>
                                     <td class="px-6">
                                         <div class="flex ">
-                                            <button data-modal-target="save-update-modal" data-modal-toggle="save-update-modal"
+                                            <button onclick="editCategory(1, 'John Smith', 'john@gmail.com', 'Manager')" data-modal-target="save-update-modal" data-modal-toggle="save-update-modal"
                                                class="px-4 py-2 mr-4 text-sm text-gray-600 bg-gray-200 rounded-md dark:bg-gray-600 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-300">Edit</button>
                                             <button 
                                                class="px-4 py-2 text-sm text-gray-600 bg-gray-200 rounded-md dark:bg-gray-600 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-300">Delete</button>
@@ -184,7 +184,7 @@
                                         </a>
                                     </td>
                                 </tr>
-                                <tr class="border-b border-gray-200 dark:border-gray-800">
+                                <tr class="border-b border-gray-200 dark:border-gray-800" >
                                     <td class="flex items-center px-6 py-3 font-medium">
                                         <div class="flex">
                                             <img class="object-cover w-10 h-10 mr-4 rounded-full"
@@ -207,7 +207,7 @@
                                     </td>
                                     <td class="px-6">
                                         <div class="flex ">
-                                            <button data-modal-target="save-update-modal" data-modal-toggle="save-update-modal"
+                                            <button onclick="editCategory(2, 'Adam Smith', 'adam@gmail.com', 'CEO')" data-modal-target="save-update-modal" data-modal-toggle="save-update-modal"
                                                class="px-4 py-2 mr-4 text-sm text-gray-600 bg-gray-200 rounded-md dark:bg-gray-600 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-300">Edit</button>
                                             <button
                                                class="px-4 py-2 text-sm text-gray-600 bg-gray-200 rounded-md dark:bg-gray-600 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-300">Delete</button>
