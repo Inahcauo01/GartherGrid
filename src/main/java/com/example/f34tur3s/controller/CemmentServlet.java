@@ -30,11 +30,16 @@ public class CemmentServlet extends HttpServlet {
         String commentText = req.getParameter("commentText");
         Integer review = Integer.valueOf(req.getParameter("review"));
 
+//        en attendant l'authentification et la session d'utilisateur
         User user = new UserRepository().findUser(1L);
 
         Comment comment = new Comment(commentText, review, user);
 
         CommentService commentService = new CommentService();
         Comment c = commentService.createComment(comment);
+
+        List<Comment> comments = commentService.getAllComments();
+        req.setAttribute("comments", comments);
+        req.getRequestDispatcher("/WEB-INF/commentSection.jsp").forward(req, resp);
     }
 }
