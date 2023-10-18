@@ -20,8 +20,8 @@ public class CommentService {
         return commentRepository.getCommentById(id);
     }
 
-    public void createComment(Comment comment) {
-        commentRepository.createComment(comment);
+    public Comment createComment(Comment comment) {
+        return commentRepository.createComment(comment);
     }
 
     public void updateComment(Comment comment) {

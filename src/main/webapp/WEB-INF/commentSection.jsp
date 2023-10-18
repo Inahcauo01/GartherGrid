@@ -7,6 +7,8 @@
 
 <form action="comments" method="post">
     <div>
+        <label>review</label>
+        <input type="number" min="0" max="5" step="1" name="review">
         <label for="comment">Comment : </label><br>
         <textarea name="commentText" id="comment" cols="30" rows="10"></textarea>
     </div>

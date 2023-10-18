@@ -25,12 +25,13 @@ public class CommentRepository {
         return em.find(Comment.class, id);
     }
 
-    public void createComment(Comment comment) {
+    public Comment createComment(Comment comment) {
         EntityManager em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
         em.persist(comment);
         em.getTransaction().commit();
         em.close();
+        return comment;
     }
 
     public void updateComment(Comment comment) {
