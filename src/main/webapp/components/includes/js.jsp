@@ -10,6 +10,7 @@
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <!-- js flowbite -->
 <script src="${pageContext.request.contextPath}/src/js/flowbite.min.js"></script>
-
+<!-- js -->
+<script src="${pageContext.request.contextPath}/src/js/script.js"></script>
 </body>
 </html>
