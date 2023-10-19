@@ -1,9 +1,6 @@
 package com.example.f34tur3s.controller;
 
 import com.example.f34tur3s.domain.Category;
-import com.example.f34tur3s.domain.Comment;
-import com.example.f34tur3s.domain.User;
-import com.example.f34tur3s.repository.UserRepository;
 import com.example.f34tur3s.service.CategoryService;
 import com.example.f34tur3s.service.CommentService;
 import jakarta.servlet.ServletException;
@@ -15,7 +12,6 @@ import jakarta.servlet.http.Part;
 
 import java.io.*;
 import java.util.List;
-import java.util.UUID;
 
 @WebServlet(urlPatterns = {"/categories", "/deleteCategory", "/editCategory"})
 public class CategoryServlet extends HttpServlet {
@@ -35,6 +31,29 @@ public class CategoryServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
+        Long categoryID = Long.valueOf(req.getParameter("id"));
+
+        CategoryService categoryService = new CategoryService();
+        categoryService.deleteCategory(categoryID);
+
+        resp.sendRedirect(req.getContextPath() + "/categories");
     }
+
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        CategoryService categoryService = new CategoryService();
+        String name = request.getParameter("name");
+        String description = request.getParameter("description");
+        String image = request.getParameter("image");
+
+        Category category = categoryService.saveCategory(name,description,image);
+
+        request.setAttribute("category", category);
+        List<Category> categories = categoryService.getAllCategories();
+        request.setAttribute("categories", categories);
+        request.getRequestDispatcher("/WEB-INF/categories.jsp").forward(request, response);
+    }
+
 }

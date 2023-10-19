@@ -18,4 +18,16 @@ public class CategoryService {
     public List<Category> getAllCategories() {
         return categoryRepository.getAllCategories();
     }
+
+
+    public Category saveCategory(String name, String description, String image) throws IOException {
+        Category category = new Category(name, description);
+        category.setImage(image);
+        return categoryRepository.createCategory(category);
+    }
+
+
+    public void deleteCategory(Long categoryID) {
+        categoryRepository.deleteCategory(categoryID);
+    }
 }

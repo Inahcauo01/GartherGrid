@@ -5,16 +5,16 @@
 </head>
 <body>
 
-<form action="categories" method="post" enctype="multipart/form-data">
+<form action="categories" method="post">
     <div>
         <label>Nom de categorie</label><br>
         <input type="text" name="name">
 
         <label>Description</label><br>
-        <input name="description"><br>
+        <input type="text" name="description"><br>
 
-        <label>Image</label>
-        <input type="file" name="image">
+<%--        <label>Image</label>--%>
+<%--        <input type="file" name="image">--%>
     </div>
     <button type="submit">Submit</button>
 </form>
@@ -24,6 +24,7 @@
         <th>ID</th>
         <th>name</th>
         <th>Description</th>
+<%--        <th>Image</th>--%>
         <th>Action</th>
     </tr>
 
@@ -39,9 +40,10 @@
                     <td>${category.id}</td>
                     <td>${category.name}</td>
                     <td>${category.description}</td>
+<%--                    <td>${category.image}</td>--%>
                     <td>
-                        <a href="editComment?id=${category.id}">Edit</a>
-                        <a href="deleteComment?id=${category.id}">Delete</a>
+                        <a href="editCategory?id=${category.id}">Edit</a>
+                        <a href="deleteCategory?id=${category.id}">Delete</a>
                     </td>
                 </tr>
             </c:forEach>
