@@ -16,7 +16,7 @@
             <!-- statistics -->
             <jsp:include page="components/statistics.jsp"></jsp:include>
 
-            <!-- table events and modal -->
+            <!-- table categorys and modal -->
             <section class="px-4 py-6">
                 <div class="grid grid-cols-1">
                     <div
@@ -32,8 +32,8 @@
                                 <div
                                         class="relative mx-4 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl dark:bg-gray-900 sm:my-8 sm:max-w-lg sm:w-full">
                                     <div class="px-4 pt-5 pb-4 sm:p-6 sm:pb-4 overflow-y-auto h-102">
-                                        <input type="hidden" id="add-event" value="">
-                                        <input type="hidden" id="update-event" value="">
+                                        <input type="hidden" id="add-category" value="">
+                                        <input type="hidden" id="update-category" value="">
                                         <form action="#" method="post" name="form_categorys" class="">
                                             <div class="container px-4 mx-auto"></div>
                                             <div class="mb-6 flex flex-col items-center">
