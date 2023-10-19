@@ -11,7 +11,7 @@
 #example_filter label{
     color: #fff;
 }
-#example_length, label{
+#example_length,#example_length label{
     color: #fff;
     margin-top: 12px;
 }
