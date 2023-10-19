@@ -5,16 +5,16 @@
 <div class="bg-gray-100 xl:h-screen dark:bg-primary-100">
   <div class="body-content" x-data="{ open: true }">
     <!-- sidebar -->
-    <%@ include file="components/includes/sidebar.jsp"%>
+    <%@ include file="../components/includes/sidebar.jsp"%>
 
     <!-- main with navbar -->
     <div class="mx-auto transition-all content-wrapper" id="dash"
          x-bind:class="! open ? 'lg:ml-0' : 'lg:ml-[280px]'">
       <!-- navbar -->
-      <%@ include file="components/includes/navbar.jsp"%>
+      <%@ include file="../components/includes/navbar.jsp"%>
 
       <!-- statistics -->
-      <jsp:include page="components/statistics.jsp"></jsp:include>
+      <jsp:include page="../components/statistics.jsp"></jsp:include>
 
       <!-- table events and modal -->
       <section class="px-4 py-6">
@@ -22,7 +22,7 @@
           <div
                   class="p-4 bg-white rounded-md shadow md:p-6 dark:bg-primary-100 border-2 border-primary-50">
             <div class="flex justify-between border-b pb-4 dark:border-gray-700 dark:text-gray-400">
-              <h2 class="text-xl font-bold">events</h2>
+              <h2 class="text-xl font-bold">Events</h2>
               <%--btn add--%>
               <button onclick="addEvents()" data-modal-target="save-update-modal" data-modal-toggle="save-update-modal"
                       class="px-4 py-2 text-white rounded-md select-none bg-second-100">Add</button>

@@ -5,16 +5,16 @@
 <div class="bg-gray-100 xl:h-screen dark:bg-primary-100">
     <div class="body-content" x-data="{ open: true }">
         <!-- sidebar -->
-        <%@ include file="components/includes/sidebar.jsp"%>
+        <%@ include file="../components/includes/sidebar.jsp"%>
 
         <!-- main with navbar -->
         <div class="mx-auto transition-all content-wrapper" id="dash"
              x-bind:class="! open ? 'lg:ml-0' : 'lg:ml-[280px]'">
             <!-- navbar -->
-            <%@ include file="components/includes/navbar.jsp"%>
+            <%@ include file="../components/includes/navbar.jsp"%>
 
             <!-- statistics -->
-            <jsp:include page="components/statistics.jsp"></jsp:include>
+            <jsp:include page="../components/statistics.jsp"></jsp:include>
 
             <!-- table categorys and modal -->
             <section class="px-4 py-6">

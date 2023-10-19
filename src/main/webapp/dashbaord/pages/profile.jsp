@@ -5,13 +5,13 @@
 <div class="bg-gray-100 xl:h-screen dark:bg-primary-100">
     <div class="body-content" x-data="{ open: true }">
         <!-- sidebar -->
-        <%@ include file="components/includes/sidebar.jsp"%>
+        <%@ include file="../components/includes/sidebar.jsp"%>
 
         <!-- main with navbar -->
         <div class="mx-auto transition-all content-wrapper" id="dash"
              x-bind:class="! open ? 'lg:ml-0' : 'lg:ml-[280px]'">
             <!-- navbar -->
-            <%@ include file="components/includes/navbar.jsp"%>
+            <%@ include file="../components/includes/navbar.jsp"%>
 
             <%--profile--%>
             <section class="py-16 bg-gray-100 dark:bg-primary-100">
