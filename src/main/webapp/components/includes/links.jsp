@@ -1,5 +1,7 @@
 <!-- style tailwind -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/src/styles/style-tailwind.css">
+<!-- custom datatable -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/src/styles/datatable-custom.css">
 <!-- google fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
