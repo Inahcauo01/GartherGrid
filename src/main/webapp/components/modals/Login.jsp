@@ -16,16 +16,16 @@
             <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Sign in to your account
             </h1>
-            <form class="space-y-4 md:space-y-6" action="#">
+            <form class="space-y-4 md:space-y-6" action="login" method="post" >
                 <div class="relative z-0 w-full mb-6 group">
-                    <input type="email" name="floating_email" id="floating_email"
+                    <input type="email" name="email" id="floating_email"
                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-second-100 focus:outline-none focus:ring-0 focus:border-second-100 peer"
                            placeholder=" " required />
                     <label for="floating_email"
                            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-second-100 peer-focus:dark:text-second-100 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label>
                 </div>
                 <div class="relative z-0 w-full mb-6 group">
-                    <input type="password" name="floating_password" id="floating_password"
+                    <input type="password" name="password" id="floating_password"
                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-second-100 focus:outline-none focus:ring-0 focus:border-second-100 peer"
                            placeholder=" " required />
                     <label for="floating_password"
@@ -79,9 +79,9 @@
             <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Create an account
             </h1>
-            <form class="space-y-4 md:space-y-6" action="#">
+            <form class="space-y-4 md:space-y-6" action="register" method="post">
                 <div class="relative z-0 w-full mb-6 group">
-                    <input type="username" name="floating_username" id="floating_username"
+                    <input type="username" name="username" id="floating_username"
                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-second-100 focus:outline-none focus:ring-0 focus:border-second-100 peer"
                            placeholder=" " required />
                     <label for="floating_username"
@@ -89,14 +89,14 @@
                 </div>
 
                 <div class="relative z-0 w-full mb-6 group">
-                    <input type="email" name="floating_email" id="floating_email"
+                    <input type="email" name="email" id="floating_email"
                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-second-100 focus:outline-none focus:ring-0 focus:border-second-100 peer"
                            placeholder=" " required />
                     <label for="floating_email"
                            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-second-100 peer-focus:dark:text-second-100 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label>
                 </div>
                 <div class="relative z-0 w-full mb-6 group">
-                    <input type="password" name="floating_password" id="floating_password"
+                    <input type="password" name="password" id="floating_password"
                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-second-100 focus:outline-none focus:ring-0 focus:border-second-100 peer"
                            placeholder=" " required />
                     <label for="floating_password"
@@ -113,7 +113,7 @@
 
                 <div class="grid md:grid-cols-2 md:gap-6">
                     <div class="relative z-0 w-full mb-6 group">
-                        <input type="text" name="floating_first_name" id="floating_first_name"
+                        <input type="text" name="firstName" id="floating_first_name"
                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-second-100 focus:outline-none focus:ring-0 focus:border-second-100 peer"
                                placeholder=" " required />
                         <label for="floating_first_name"
@@ -121,7 +121,7 @@
                             name</label>
                     </div>
                     <div class="relative z-0 w-full mb-6 group">
-                        <input type="text" name="floating_last_name" id="floating_last_name"
+                        <input type="text" name="lastName" id="floating_last_name"
                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-second-100 focus:outline-none focus:ring-0 focus:border-second-100 peer"
                                placeholder=" " required />
                         <label for="floating_last_name"

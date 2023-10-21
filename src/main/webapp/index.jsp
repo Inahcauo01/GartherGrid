@@ -1,3 +1,6 @@
+<% if (request.getAttribute("errorMessage") != null) { %>
+<p class="text-white">Error: <%=request.getAttribute("errorMessage")%></p>
+<% } %>
 <%--Head--%>
 <%@ include file="/components/includes/static/head.jsp"%>
 

@@ -31,14 +31,17 @@ public class LoginServlet extends HttpServlet {
         if(userOptional.isPresent()){
             HttpSession session = request.getSession();
             session.setAttribute("user", userOptional.get());
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }else {
             request.setAttribute("errorMessage", "this account doesn't exists");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
 
+    }
 
-
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session=request.getSession();
+       session.removeAttribute("user");
+       response.sendRedirect("index.jsp");
     }
 }

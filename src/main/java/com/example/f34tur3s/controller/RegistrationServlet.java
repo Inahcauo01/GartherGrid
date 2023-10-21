@@ -36,10 +36,10 @@ public class RegistrationServlet extends HttpServlet {
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } catch (UserAlreadyExistsException e) {
             request.setAttribute("errorMessage", "this account already exists");
-            request.getRequestDispatcher("registration.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         } catch (IllegalArgumentException e) {
             request.setAttribute("errorMessage", "Invalid data");
-            request.getRequestDispatcher("registration.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
 
 
