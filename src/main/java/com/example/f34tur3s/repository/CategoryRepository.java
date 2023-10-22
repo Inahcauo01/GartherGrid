@@ -1,10 +1,11 @@
 package com.example.f34tur3s.repository;
 
 import com.example.f34tur3s.domain.Category;
-import com.example.f34tur3s.domain.Comment;
+import com.example.f34tur3s.domain.Event;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 
@@ -50,5 +51,10 @@ public class CategoryRepository {
         }
         em.getTransaction().commit();
         em.close();
+    }
+
+    public Category findEvent(Long aLong) {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        return em.find(Category.class, aLong);
     }
 }

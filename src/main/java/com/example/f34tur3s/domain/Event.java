@@ -15,27 +15,24 @@ public class Event {
     private Long id;
     private String name;
     private Date date;
-    private Time hour;
     private String location;
     private String description;
     private String image;
     @ManyToOne
     private Category category;
-    @OneToMany
-    private List<Comment> comment;
+
+//    @OneToMany
+//    private List<Comment> comment;
 
     public Event() {
     }
 
-    public Event(String name, Date date, Time hour, String location, String description, String image, Category category, List<Comment> comment) {
+    public Event(String name, Date date, String location, String description, Category category) {
         this.name = name;
         this.date = date;
-        this.hour = hour;
         this.location = location;
         this.description = description;
-        this.image = image;
         this.category = category;
-        this.comment = comment;
     }
 
     public String getImage() {
@@ -70,14 +67,6 @@ public class Event {
         this.date = date;
     }
 
-    public Time getHour() {
-        return hour;
-    }
-
-    public void setHour(Time hour) {
-        this.hour = hour;
-    }
-
     public String getLocation() {
         return location;
     }
@@ -94,12 +83,18 @@ public class Event {
         this.description = description;
     }
 
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
     @Override
     public String toString() {
         return "Event{" +
                 "name='" + name + '\'' +
                 ", date=" + date +
-                ", hour=" + hour +
                 ", location='" + location + '\'' +
                 ", description='" + description + '\'' +
                 ", category=" + category +
@@ -111,7 +106,7 @@ public class Event {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
-        return Objects.equals(name, event.name) && Objects.equals(date, event.date) && Objects.equals(hour, event.hour) && Objects.equals(location, event.location) && Objects.equals(description, event.description) && Objects.equals(image, event.image) && Objects.equals(category, event.category);
+        return Objects.equals(name, event.name) && Objects.equals(date, event.date) && Objects.equals(location, event.location) && Objects.equals(description, event.description) && Objects.equals(image, event.image) && Objects.equals(category, event.category);
     }
 
 }

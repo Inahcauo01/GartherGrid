@@ -21,14 +21,30 @@ public class CommentService {
     }
 
     public Comment createComment(Comment comment) {
+        validateComment(comment);
         return commentRepository.createComment(comment);
     }
 
     public void updateComment(Comment comment) {
+        validateComment(comment);
         commentRepository.updateComment(comment);
     }
 
     public void deleteComment(Long id) {
         commentRepository.deleteComment(id);
+    }
+
+    private void validateComment(Comment comment) {
+        if (comment == null) {
+            throw new IllegalArgumentException("Comment cannot be null.");
+        }
+
+        if (comment.getText() == null || comment.getText().trim().isEmpty()) {
+            throw new IllegalArgumentException("Comment content cannot be empty.");
+        }
+
+        if (comment.getText().length() > 250) {
+            throw new IllegalArgumentException("Comment content exceeds the maximum allowed length.");
+        }
     }
 }

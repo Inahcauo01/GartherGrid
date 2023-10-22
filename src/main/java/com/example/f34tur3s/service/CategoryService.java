@@ -31,4 +31,7 @@ public class CategoryService {
         categoryRepository.deleteCategory(categoryID);
     }
 
+    public Category findCategory(Long categoryID){
+        return categoryRepository.findEvent(categoryID);
+    }
 }
