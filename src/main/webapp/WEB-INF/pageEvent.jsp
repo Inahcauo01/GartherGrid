@@ -28,8 +28,32 @@
         <button type="submit">Submit</button>
     </form>
 
-<h2>${msg}</h2>
+<%--<h2>${msg}</h2>--%>
+    <hr>
+    <h1>Event Search</h1>
+    <form action="events" method="get">
+        <label for="searchName">Event's name :</label>
+        <input type="text" id="searchName" name="searchName">
 
+        <label for="searchDate">Date:</label>
+        <input type="date" id="searchDate" name="searchDate">
+
+        <label for="searchCategory">Category:</label>
+        <select id="searchCategory" name="searchCategory">
+            <option value="">Select a category</option>
+            <c:forEach items="${categories}" var="category">
+                <option value="${category.id}">
+                        ${category.name}
+                </option>
+            </c:forEach>
+        </select>
+
+        <label for="searchLocation">Location:</label>
+        <input type="text" id="searchLocation" name="searchLocation">
+
+        <input type="submit" value="Search">
+    </form>
+    <hr>
     <h2>Listes des evenements</h2>
     <table style="width: 50vw">
         <tr>

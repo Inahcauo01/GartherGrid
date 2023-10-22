@@ -3,7 +3,10 @@ package com.example.f34tur3s.service;
 import com.example.f34tur3s.domain.Event;
 import com.example.f34tur3s.repository.EventRepository;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EventService {
 
@@ -28,4 +31,36 @@ public class EventService {
     public Event deleteEvent(Long eventID) {
         return eventRepository.deleteEvent(eventID);
     }
+
+//    public List<Event> searchEvents(Date searchDate, String searchCategory, String searchLocation) {
+//        String query = "SELECT e FROM Event e WHERE 1=1";
+//        if (searchDate != null)
+//            query += " AND e.date = :searchDate";
+//        if (searchCategory != null)
+//            query += " AND e.category_id = :searchCategory";
+//        if (searchLocation != null)
+//            query += " AND e.location = :searchLocation";
+//        return eventRepository.customQuery(query);
+//    }
+
+    public List<Event> searchEvents(Date searchDate, String searchName, String searchCategory, String searchLocation) {
+        String query = "SELECT e FROM Event e WHERE 1=1";
+        Map<String, Object> parameters = new HashMap<>();
+
+        if (searchDate != null) {
+            query += " AND e.date = :searchDate";
+            parameters.put("searchDate", searchDate);
+        }
+        if (searchName != null && !searchName.isEmpty()) {
+            query += " AND e.name LIKE :searchName";
+            parameters.put("searchName", "%" + searchName + "%");
+        }
+        if (searchLocation != null  && !searchLocation.isEmpty()) {
+            query += " AND e.location LIKE :searchLocation";
+            parameters.put("searchLocation", "%" + searchLocation + "%");
+        }
+
+        return eventRepository.customQuery(query, parameters);
+    }
+
 }

@@ -24,10 +24,10 @@ import java.util.List;
 @WebServlet(name = "events", value = {"/events", "/deleteEvent"})
 
 public class EventServlet extends HttpServlet {
-
+    EventService eventService;
     @Override
     public void init() throws ServletException {
-        super.init();
+        eventService = new EventService();
     }
 
     @Override
@@ -37,12 +37,31 @@ public class EventServlet extends HttpServlet {
         if (action.equalsIgnoreCase("/deleteEvent")){
             doDelete(req, resp);
         }else {
-            List<Event> events = new EventService().getAllEvents();
+            String searchDateStr = req.getParameter("searchDate");
+            String searchName = req.getParameter("searchName");
+            String searchCategory = req.getParameter("searchCategory");
+            String searchLocation = req.getParameter("searchLocation");
 
-            for (Event event : events) {
-                Category category = event.getCategory();
-                if (category != null) {
-                    event.setCategory(category);
+            List<Event> events;
+            if (searchDateStr != null || searchName != null || searchCategory != null || searchLocation != null) {
+                Date searchDate = null;
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                if (searchDateStr != null && !searchDateStr.isEmpty()) {
+                    try {
+                        searchDate = dateFormat.parse(searchDateStr);
+                    } catch (ParseException e) {
+                        System.err.println("Error parsing date: " + e.getMessage());
+                    }
+                }
+                events = eventService.searchEvents(searchDate, searchName, searchCategory, searchLocation);
+            } else {
+                events = eventService.getAllEvents();
+            }
+
+            for (Event ev: events) {
+                Category c = ev.getCategory();
+                if (c != null){
+                    ev.setCategory(c);
                 }
             }
             req.setAttribute("events", events);
@@ -50,7 +69,7 @@ public class EventServlet extends HttpServlet {
             List<Category> categories = new CategoryService().getAllCategories();
             req.setAttribute("categories", categories);
 
-            req.getRequestDispatcher("/WEB-INF/pageEvent.jsp").forward(req, resp);
+            getServletContext().getRequestDispatcher("/WEB-INF/pageEvent.jsp").forward(req, resp);
         }
     }
 
@@ -75,11 +94,10 @@ public class EventServlet extends HttpServlet {
         Category category = categoryService.findCategory(categorie_id);
 
         Event event = new Event(name, date, location, description, category);
-//        event.setCategory(category);
 
-        Event e = new EventService().createEvent(event);
+        Event e = eventService.createEvent(event);
 
-        List<Event> events = new EventService().getAllEvents();
+        List<Event> events = eventService.getAllEvents();
         for (Event ev: events) {
             Category c = ev.getCategory();
             if (c != null){
@@ -98,7 +116,6 @@ public class EventServlet extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long eventID = Long.valueOf(req.getParameter("id"));
 
-        EventService eventService = new EventService();
         eventService.findEvent(eventID);
         Event e = eventService.deleteEvent(eventID);
         String s ;
