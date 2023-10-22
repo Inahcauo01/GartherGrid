@@ -59,6 +59,10 @@ public class EventService {
             query += " AND e.location LIKE :searchLocation";
             parameters.put("searchLocation", "%" + searchLocation + "%");
         }
+        if (searchCategory != null) {
+            query += " AND e.category.id = :searchCategory";
+            parameters.put("searchCategory", Long.valueOf(searchCategory));
+        }
 
         return eventRepository.customQuery(query, parameters);
     }
