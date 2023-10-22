@@ -3,8 +3,7 @@ package com.example.f34tur3s.domain;
 import jakarta.persistence.*;
 
 import java.sql.Time;
-import java.sql.Date;
-import java.util.List;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity

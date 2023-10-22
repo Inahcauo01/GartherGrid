@@ -15,7 +15,8 @@ public class EventService {
     }
 
     public Event createEvent(Event event){
-        validate(event);
+//        validate(event);
+        System.out.println("cc");
         return eventRepository.save(event);
     }
 

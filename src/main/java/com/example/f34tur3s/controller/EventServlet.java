@@ -9,7 +9,6 @@ import com.example.f34tur3s.repository.UserRepository;
 import com.example.f34tur3s.service.EventService;
 import com.example.f34tur3s.utils.EntityManagerUtil;
 import jakarta.persistence.EntityManager;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,10 +19,12 @@ import java.io.IOException;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.sql.Date;
+import java.util.Date;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/events.jsp", ""} )
+@WebServlet(urlPatterns = {"/events.jsp", ""}, name = "events")
 
 public class EventServlet extends HttpServlet {
     EventService eventService;
@@ -54,25 +55,27 @@ public class EventServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         EntityManager em = EntityManagerUtil.getEntityManager();
         EventRepository eventRepository = new EventRepository(em);
         EventService eventService = new EventService(eventRepository);
-
         String name = req.getParameter("eventName");
         String description = req.getParameter("eventDescription");
         Date date = null;
         String dateString = req.getParameter("eventDate");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // Adjust the date format as needed
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 
         try {
-            date = (Date) dateFormat.parse(dateString);
+            date = new Date(dateFormat.parse(dateString).getTime());
         } catch (ParseException e) {
             e.printStackTrace();
         }
         String timeString = req.getParameter("eventTime");
-        Time time = Time.valueOf(timeString);
+        System.out.println(timeString+":00");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime parsedTime = LocalTime.parse(req.getParameter("eventTime").trim(), formatter);
+        Time time = Time.valueOf(parsedTime);
         String location = req.getParameter("eventLocation");
         String image = req.getParameter("eventImage");
         String vipString = req.getParameter("eventNbrVIP");
@@ -81,7 +84,8 @@ public class EventServlet extends HttpServlet {
         Integer standard = Integer.parseInt(standardString);
         String categoryString = req.getParameter("eventCategory");
         Category category = CategoryRepository.findByName(em, categoryString);
-        User organizer = (User) req.getSession().getAttribute("user");
+        User organizer=new User();
+        organizer.setId(1L);
 
         Event event = new Event(name, date, time, location, description, image, standard, VIP, category, organizer);
 
@@ -89,6 +93,7 @@ public class EventServlet extends HttpServlet {
         eventService.createEvent(event);
 
         // Redirect to the event list page or do whatever is needed
-        resp.sendRedirect("/events.jsp");
+//        resp.sendRedirect("");
+        doGet(req, resp);
     }
 }

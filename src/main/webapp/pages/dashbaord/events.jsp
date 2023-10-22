@@ -34,7 +34,7 @@
                                  style="background-color: rgba(0,0,0,.5);">
                                 <div class="relative mx-4 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl dark:bg-gray-900 sm:my-8 sm:max-w-lg sm:w-full">
                                     <div class="px-4 pt-5 pb-4 sm:p-6 sm:pb-4 overflow-y-auto h-102">
-                                        <form action="#" method="post" class="">
+                                        <form action="" method="post" class="">
                                             <div class="container px-4 mx-auto"></div>
                                             <div class="mb-6 flex flex-col items-center">
                                                 <label class="block mb-2 text-sm font-medium dark:text-gray-400">Insert
@@ -74,10 +74,7 @@
                                                     <select
                                                             class="block w-full px-4 py-3 mb-2 text-sm placeholder-gray-500 bg-white border rounded appearance-none dark:text-gray-400 dark:border-primary-50 dark:bg-primary-100"
                                                             name="eventCategory">
-                                                        <option>Manager</option>
-                                                        <option>CEO</option>
-                                                        <option>Assistant</option>
-                                                        <option>Designer</option>
+                                                        <option value="dfghjk">dfghjk</option>
                                                     </select>
                                                     <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-500 pointer-events-none">
                                                         <svg class="w-4 h-4 fill-current"
@@ -103,7 +100,7 @@
                                                     Time
                                                 </label>
                                                 <input class="block w-full px-4 py-3 mb-2 text-sm placeholder-gray-500 bg-white border rounded dark:text-gray-400 dark:placeholder-gray-500 dark:border-primary-50 dark:bg-primary-100"
-                                                       type="time" name="eventTime">
+                                                       type="time" name="eventTime" step="1">
                                             </div>
                                             <div class="mb-6">
                                                 <%--@declare id=""--%><label class="block mb-2 text-sm font-medium dark:text-gray-400" for="">
@@ -113,11 +110,26 @@
                                                         class="block w-full px-4 py-3 mb-2 text-sm placeholder-gray-500 bg-white border rounded dark:text-gray-400 dark:placeholder-gray-500 dark:border-primary-50 dark:bg-primary-100"
                                                         type="text" name="eventLocation">
                                             </div>
+                                            <div class="mb-6">
+                                                <%--@declare id=""--%><label class="block mb-2 text-sm font-medium dark:text-gray-400" for="">
+                                                    VIP tickets
+                                                </label>
+                                                <input
+                                                        class="block w-full px-4 py-3 mb-2 text-sm placeholder-gray-500 bg-white border rounded dark:text-gray-400 dark:placeholder-gray-500 dark:border-primary-50 dark:bg-primary-100"
+                                                        type="number" name="eventNbrVIP">
+                                            </div>
+                                            <div class="mb-6">
+                                                <%--@declare id=""--%><label class="block mb-2 text-sm font-medium dark:text-gray-400" for="">
+                                                    Standard tickets
+                                                </label>
+                                                <input
+                                                        class="block w-full px-4 py-3 mb-2 text-sm placeholder-gray-500 bg-white border rounded dark:text-gray-400 dark:placeholder-gray-500 dark:border-primary-50 dark:bg-primary-100"
+                                                        type="number" name="eventNbrStandard">
+                                            </div>
                                             <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                                                <button type="button"
-                                                        class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-blue-500 border border-transparent border-blue-600 rounded-md shadow-sm bg-blue-50 hover:text-gray-100 hover:bg-blue-700 focus:outline-none dark:hover:bg-blue-500 dark:text-gray-100 dark:bg-blue-400 focus:ring-2 focus:ring-offset-2 dark:focus:ring-0 dark:focus:ring-offset-0 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
-                                                    Save
-                                                </button>
+                                                <input type="submit" value="Save"
+                                                        class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-blue-500 border border-transparent border-blue-600 rounded-md shadow-sm bg-blue-50 hover:text-gray-100 hover:bg-blue-700 focus:outline-none dark:hover:bg-blue-500 dark:text-gray-100 dark:bg-blue-400 focus:ring-2 focus:ring-offset-2 dark:focus:ring-0 dark:focus:ring-offset-0 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"/>
+<%--                                                    Save--%>
                                                 <button data-modal-hide="save-modal"
                                                         class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-700 dark:text-gray-100 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm dark:focus:ring-0 dark:focus:ring-offset-0">
                                                     Cancel
