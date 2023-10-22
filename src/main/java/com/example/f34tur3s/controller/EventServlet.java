@@ -56,44 +56,65 @@ public class EventServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        EntityManager em = EntityManagerUtil.getEntityManager();
-        EventRepository eventRepository = new EventRepository(em);
-        EventService eventService = new EventService(eventRepository);
-        String name = req.getParameter("eventName");
-        String description = req.getParameter("eventDescription");
-        Date date = null;
-        String dateString = req.getParameter("eventDate");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        String action = req.getParameter("action");
+
+        if ("delete".equals(action)) {
+            // Handle the delete action
+            String eventIdString = req.getParameter("eventId");
+            Long eventId = Long.parseLong(eventIdString);
+
+            EntityManager em = EntityManagerUtil.getEntityManager();
+            EventRepository eventRepository = new EventRepository(em);
+            eventService = new EventService(eventRepository);
+
+            // Load the event to be deleted
+            Event event = eventService.getEventById(eventId);
+
+            if (event != null) {
+                // Delete the event from the database
+                eventService.deleteEvent(event);
+            }
+        } else {
+            EntityManager em = EntityManagerUtil.getEntityManager();
+            EventRepository eventRepository = new EventRepository(em);
+            EventService eventService = new EventService(eventRepository);
+            String name = req.getParameter("eventName");
+            String description = req.getParameter("eventDescription");
+            Date date = null;
+            String dateString = req.getParameter("eventDate");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 
-        try {
-            date = new Date(dateFormat.parse(dateString).getTime());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        String timeString = req.getParameter("eventTime");
-        System.out.println(timeString+":00");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        LocalTime parsedTime = LocalTime.parse(req.getParameter("eventTime").trim(), formatter);
-        Time time = Time.valueOf(parsedTime);
-        String location = req.getParameter("eventLocation");
-        String image = req.getParameter("eventImage");
-        String vipString = req.getParameter("eventNbrVIP");
-        Integer VIP = Integer.parseInt(vipString);
-        String standardString = req.getParameter("eventNbrStandard");
-        Integer standard = Integer.parseInt(standardString);
-        String categoryString = req.getParameter("eventCategory");
-        Category category = CategoryRepository.findByName(em, categoryString);
-        User organizer=new User();
-        organizer.setId(1L);
+            try {
+                date = new Date(dateFormat.parse(dateString).getTime());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String timeString = req.getParameter("eventTime");
+            System.out.println(timeString + ":00");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime parsedTime = LocalTime.parse(req.getParameter("eventTime").trim(), formatter);
+            Time time = Time.valueOf(parsedTime);
+            String location = req.getParameter("eventLocation");
+            String image = req.getParameter("eventImage");
+            String vipString = req.getParameter("eventNbrVIP");
+            Integer VIP = Integer.parseInt(vipString);
+            String standardString = req.getParameter("eventNbrStandard");
+            Integer standard = Integer.parseInt(standardString);
+            String categoryString = req.getParameter("eventCategory");
+            Category category = CategoryRepository.findByName(em, categoryString);
+            User organizer = new User();
+            organizer.setId(1L);
 
-        Event event = new Event(name, date, time, location, description, image, standard, VIP, category, organizer);
+            Event event = new Event(name, date, time, location, description, image, standard, VIP, category, organizer);
 
-        // Save the event to the database
-        eventService.createEvent(event);
+            // Save the event to the database
+            eventService.createEvent(event);
 
-        // Redirect to the event list page or do whatever is needed
+            // Redirect to the event list page or do whatever is needed
 //        resp.sendRedirect("");
-        doGet(req, resp);
+
+        }doGet(req, resp);
     }
 }

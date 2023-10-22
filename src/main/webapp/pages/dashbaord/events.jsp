@@ -127,9 +127,7 @@
                                                         type="number" name="eventNbrStandard">
                                             </div>
                                             <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                                                <input type="submit" value="Save"
-                                                        class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-blue-500 border border-transparent border-blue-600 rounded-md shadow-sm bg-blue-50 hover:text-gray-100 hover:bg-blue-700 focus:outline-none dark:hover:bg-blue-500 dark:text-gray-100 dark:bg-blue-400 focus:ring-2 focus:ring-offset-2 dark:focus:ring-0 dark:focus:ring-offset-0 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"/>
-<%--                                                    Save--%>
+                                                <input type="submit" value="Save" class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-blue-500 border border-transparent border-blue-600 rounded-md shadow-sm bg-blue-50 hover:text-gray-100 hover:bg-blue-700 focus:outline-none dark:hover:bg-blue-500 dark:text-gray-100 dark:bg-blue-400 focus:ring-2 focus:ring-offset-2 dark:focus:ring-0 dark:focus:ring-offset-0 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"/>
                                                 <button data-modal-hide="save-modal"
                                                         class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-700 dark:text-gray-100 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm dark:focus:ring-0 dark:focus:ring-offset-0">
                                                     Cancel
@@ -158,37 +156,38 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="event" items="${events}">
-                                    <tr class="border-b border-gray-200 dark:border-gray-800">
-                                        <td class="flex items-center px-6 py-3 font-medium">
-                                            <div class="flex">
-                                                <img class="object-cover w-10 h-10 mr-4 rounded-full"
-                                                     src="https://i.postimg.cc/WbPKvgBr/pexels-italo-melo-2379005.jpg"
-                                                     alt="">
-                                                <div>
-                                                    <p class="text-sm font-medium dark:text-gray-400">${event.name}</p>
-                                                    <p class="text-xs text-gray-500 dark:text-gray-500">
-                                                            ${event.description}</p>
-                                                </div>
+                            <c:forEach var="event" items="${events}">
+                                <tr class="border-b border-gray-200 dark:border-gray-800">
+                                    <td class="flex items-center px-6 py-3 font-medium">
+                                        <div class="flex">
+                                            <img class="object-cover w-10 h-10 mr-4 rounded-full"
+                                                 src="https://i.postimg.cc/WbPKvgBr/pexels-italo-melo-2379005.jpg"
+                                                 alt="">
+                                            <div>
+                                                <p class="text-sm font-medium dark:text-gray-400">${event.name}</p>
+                                                <p class="text-xs text-gray-500 dark:text-gray-500">
+                                                        ${event.description}</p>
                                             </div>
-                                        </td>
-                                        <td class="px-6 text-sm font-medium dark:text-gray-400">
-                                            <span class="inline-block px-2 py-1 text-blue-700 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-gray-400">${event.category.name}</span>
-                                        </td>
-                                        <td class="px-6 text-sm font-medium dark:text-gray-400">${event.organizer.firstName} ${event.organizer.lastName}</td>
-                                        <td class="px-6 text-sm font-medium dark:text-gray-400">${event.date}</td>
-                                        <td class="px-6 text-sm font-medium dark:text-gray-400">${event.hour}</td>
-                                        <td class="px-6 text-sm font-medium dark:text-gray-400">${event.location}</td>
-                                        <td class="px-6 text-sm font-medium">
-                                            <div class="flex ">
-                                                <a href="#"
-                                                   class="px-4 py-2 mr-4 text-sm text-gray-600 bg-gray-200 rounded-md dark:bg-gray-600 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-300">Edit</a>
-                                                <a href="#"
-                                                   class="px-4 py-2 text-sm text-gray-600 bg-gray-200 rounded-md dark:bg-gray-600 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-300">Delete</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 text-sm font-medium dark:text-gray-400">
+                                        <span class="inline-block px-2 py-1 text-blue-700 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-gray-400">${event.category.name}</span>
+                                    </td>
+                                    <td class="px-6 text-sm font-medium dark:text-gray-400">${event.organizer.firstName} ${event.organizer.lastName}</td>
+                                    <td class="px-6 text-sm font-medium dark:text-gray-400">${event.date}</td>
+                                    <td class="px-6 text-sm font-medium dark:text-gray-400">${event.hour}</td>
+                                    <td class="px-6 text-sm font-medium dark:text-gray-400">${event.location}</td>
+                                    <td class="px-6 text-sm font-medium">
+                                        <div class="flex ">
+                                            <form action="" method="POST">
+                                                <input type="hidden" name="action" value="delete">
+                                                <input type="hidden" name="eventId" value="${event.id}">
+                                                <button class="px-4 py-2 text-sm text-gray-600 bg-gray-200 rounded-md dark:bg-gray-600 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-300">Delete</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                                 <%--                <tr>--%>
                                 <%--                  <td class="px-6 py-3 text-sm font-medium dark:text-gray-400">No events found</td>--%>
                                 <%--                </tr>--%>

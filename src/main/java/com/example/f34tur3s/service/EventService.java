@@ -24,6 +24,14 @@ public class EventService {
         return eventRepository.findAll();
     }
 
+    public Event getEventById(Long id){
+        return eventRepository.find(id);
+    }
+
+    public Event deleteEvent(Event event){
+        return eventRepository.delete(event);
+    }
+
     private void validate(Event event){
         Date today = new Date();
         if (event.getName().isBlank() || event.getLocation().isBlank() || event.getDescription().isBlank()){

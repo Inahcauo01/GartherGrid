@@ -1,6 +1,7 @@
 package com.example.f34tur3s.repository;
 
 import com.example.f34tur3s.domain.Event;
+import com.mysql.cj.ServerVersion;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -25,6 +26,18 @@ public class EventRepository {
         em.getTransaction().begin();
         em.merge(event);
         em.getTransaction().commit();
+    }
+
+    public Event delete(Event event) {
+        em.getTransaction().begin();
+
+        if (event.getId() != null) {
+            em.remove(event);
+        }
+
+        em.getTransaction().commit();
+
+        return event;
     }
 
     public Event find(long id){
