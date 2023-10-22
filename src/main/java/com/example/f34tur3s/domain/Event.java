@@ -3,7 +3,7 @@ package com.example.f34tur3s.domain;
 import jakarta.persistence.*;
 
 import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,13 +23,14 @@ public class Event {
     private Integer nbrVIP;
     @ManyToOne
     private Category category;
-    @OneToMany
-    private List<Comment> comment;
+
+    @ManyToOne
+    private User organizer;
 
     public Event() {
     }
 
-    public Event(String name, Date date, Time hour, String location, String description, String image, Integer nbrStandard, Integer nbrVIP, Category category) {
+    public Event(String name, Date date, Time hour, String location, String description, String image, Integer nbrStandard, Integer nbrVIP, Category category, User organizer) {
         this.name = name;
         this.date = date;
         this.hour = hour;
@@ -39,6 +40,7 @@ public class Event {
         this.nbrStandard = nbrStandard;
         this.nbrVIP = nbrVIP;
         this.category = category;
+        this.organizer = organizer;
     }
 
     public String getImage() {
@@ -121,12 +123,12 @@ public class Event {
         this.category = category;
     }
 
-    public List<Comment> getComment() {
-        return comment;
+    public User getOrganizer() {
+        return organizer;
     }
 
-    public void setComment(List<Comment> comment) {
-        this.comment = comment;
+    public void setOrganizer(User organizer) {
+        this.organizer = organizer;
     }
 
     @Override
@@ -142,7 +144,6 @@ public class Event {
                 ", nbrStandard=" + nbrStandard +
                 ", nbrVIP=" + nbrVIP +
                 ", category=" + category +
-                ", comment=" + comment +
                 '}';
     }
 
@@ -151,11 +152,11 @@ public class Event {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
-        return Objects.equals(id, event.id) && Objects.equals(name, event.name) && Objects.equals(date, event.date) && Objects.equals(hour, event.hour) && Objects.equals(location, event.location) && Objects.equals(description, event.description) && Objects.equals(image, event.image) && Objects.equals(nbrStandard, event.nbrStandard) && Objects.equals(nbrVIP, event.nbrVIP) && Objects.equals(category, event.category) && Objects.equals(comment, event.comment);
+        return Objects.equals(id, event.id) && Objects.equals(name, event.name) && Objects.equals(date, event.date) && Objects.equals(hour, event.hour) && Objects.equals(location, event.location) && Objects.equals(description, event.description) && Objects.equals(image, event.image) && Objects.equals(nbrStandard, event.nbrStandard) && Objects.equals(nbrVIP, event.nbrVIP) && Objects.equals(category, event.category);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, date, hour, location, description, image, nbrStandard, nbrVIP, category, comment);
+        return Objects.hash(id, name, date, hour, location, description, image, nbrStandard, nbrVIP, category);
     }
 }
