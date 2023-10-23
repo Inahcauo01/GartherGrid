@@ -3,6 +3,7 @@ package com.example.f34tur3s.controller;
 import com.example.f34tur3s.domain.Category;
 import com.example.f34tur3s.domain.Comment;
 import com.example.f34tur3s.domain.Event;
+import com.example.f34tur3s.domain.User;
 import com.example.f34tur3s.service.CategoryService;
 import com.example.f34tur3s.service.CommentService;
 import com.example.f34tur3s.service.EventService;
@@ -18,6 +19,8 @@ import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -79,6 +82,13 @@ public class EventServlet extends HttpServlet {
         String dateString = req.getParameter("date");
         Date date = null;
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String timeString = req.getParameter("eventTime");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime parsedTime = LocalTime.parse(req.getParameter("eventTime").trim(), formatter);
+        Time time = Time.valueOf(parsedTime);
+
+        Integer VIP = Integer.valueOf(req.getParameter("eventNbrVIP"));
+        Integer standard  = Integer.valueOf(req.getParameter("eventNbrStandard"));
 
         try {
             date = dateFormat.parse(dateString);
@@ -93,7 +103,8 @@ public class EventServlet extends HttpServlet {
         CategoryService categoryService = new CategoryService();
         Category category = categoryService.findCategory(categorie_id);
 
-        Event event = new Event(name, date, location, description, category);
+        User organizer = (User) req.getSession().getAttribute("user");
+        Event event = new Event(name, date, time, location, description, standard, VIP, category, organizer);
 
         Event e = eventService.createEvent(event);
 

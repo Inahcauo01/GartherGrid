@@ -2,7 +2,6 @@ package com.example.f34tur3s.controller;
 
 import com.example.f34tur3s.domain.Category;
 import com.example.f34tur3s.service.CategoryService;
-import com.example.f34tur3s.service.CommentService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
