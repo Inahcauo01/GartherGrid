@@ -1,5 +1,5 @@
 <%--Head--%>
-<jsp:include page="../../components/includes/static/head.jsp"></jsp:include>
+<jsp:include page="../../../components/includes/static/head.jsp"></jsp:include>
 
 <%--Content body--%>
 <div class="bg-gray-100 xl:h-screen dark:bg-primary-100">
@@ -249,4 +249,4 @@
 
 
 <%--links js--%>
-<jsp:include page="../../components/includes/js.jsp"></jsp:include>
+<jsp:include page="../../../components/includes/js.jsp"></jsp:include>
