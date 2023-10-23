@@ -4,16 +4,46 @@ import com.example.f34tur3s.domain.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import com.example.f34tur3s.utils.EntityManagerUtil;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 public class UserRepository {
-    private final EntityManagerFactory entityManagerFactory;
+    private final EntityManager entityManager;
 
     public UserRepository() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("my-persistence-unit");
+        entityManager = EntityManagerUtil.getEntityManager();
+    }
+    public User findUser(Long id) {
+        return entityManager.find(User.class, id);
+    }
+    public void save(User user) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(user);
+        entityManager.getTransaction().commit();
     }
 
-    public User findUser(Long id) {
-        EntityManager em = entityManagerFactory.createEntityManager();
-        return em.find(User.class, id);
+    public Stream<User> findByEmail(String email) {
+        Stream<User> userStream= entityManager.createQuery("SELECT u FROM User u WHERE u.email = :email")
+                .setParameter("email", email).getResultStream();
+        return userStream;
+    }
+
+    public User findById(Long id) {
+        /*EntityManager entityManager = entityManagerFactory.createEntityManager();*/
+        User user = entityManager.find(User.class, id);
+       /* entityManager.close();*/
+        return user;
+    }
+
+
+    public List<User> getAllUsers() {
+        List<User> users = entityManager.createQuery("SELECT u FROM User u", User.class).getResultList();
+        return users;
     }
 }

@@ -79,6 +79,6 @@ function editEvent(id){
 }
 
 // delete
-function deleteEvent(id){
+function deleteEvent(id) {
     //soon
 }

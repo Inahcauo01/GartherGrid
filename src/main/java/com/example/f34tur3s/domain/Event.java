@@ -3,6 +3,7 @@ package com.example.f34tur3s.domain;
 import jakarta.persistence.*;
 
 import java.sql.Time;
+import java.time.chrono.ChronoLocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
