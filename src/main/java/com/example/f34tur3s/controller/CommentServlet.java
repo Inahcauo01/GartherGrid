@@ -36,7 +36,7 @@ public class CommentServlet extends HttpServlet {
         Integer review = Integer.valueOf(req.getParameter("review"));
 
 //        en attendant l'authentification et la session d'utilisateur
-        User user = new UserRepository().findUser(1L);
+        User user = new UserRepository().findById(1L);
 
         Comment comment = new Comment(commentText, review, user);
 
