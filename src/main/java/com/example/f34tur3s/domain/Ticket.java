@@ -1,79 +1,53 @@
 package com.example.f34tur3s.domain;
 
 import com.example.f34tur3s.domain.enums.Type;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
 public class Ticket {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private double price;
-    private int quantity;
-    private Type type;
+    private Integer number;
+    @ManyToOne
+    private Event event;
+    @ManyToOne
+    private User user;
+
+
+    public Ticket(Integer number, Event event, User user) {
+        this.number = number;
+        this.event = event;
+        this.user = user;
+    }
 
     public Ticket() {
+
     }
 
-    public Ticket(double price, int quantity, Type type) {
-        this.price = price;
-        this.quantity = quantity;
-        this.type = type;
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
-    public Long getId() {
-        return id;
+    public void setEvent(Event event) {
+        this.event = event;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public double getPrice() {
-        return price;
+    public Integer getNumber() {
+        return number;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public Event getEvent() {
+        return event;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
-
-    @Override
-    public String toString() {
-        return "Ticket{" +
-                "id=" + id +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                ", type=" + type +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ticket ticket = (Ticket) o;
-        return Double.compare(price, ticket.price) == 0 && quantity == ticket.quantity && Objects.equals(id, ticket.id) && type == ticket.type;
+    public User getUser() {
+        return user;
     }
 
 }
