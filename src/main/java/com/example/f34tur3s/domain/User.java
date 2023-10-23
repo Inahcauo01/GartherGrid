@@ -1,9 +1,6 @@
 package com.example.f34tur3s.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -18,17 +15,29 @@ public class User {
     private String email;
     private String password;
     private String image;
+    @ManyToOne
+    private Role role;
 
     public User() {
     }
 
-    public User(String username, String firstName, String lastName, String email, String password, String image) {
+    public User(String username, String firstName, String lastName, String email, String password, String image,Role role) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.role=role;
         this.image = image;
+    }
+
+    public User(String username, String firstName, String lastName, String email, String password,Role role) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.role=role;
     }
 
     public String getImage() {
