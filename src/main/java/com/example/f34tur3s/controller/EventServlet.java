@@ -15,7 +15,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
+import jakarta.servlet.http.Part;
+
 import java.io.IOException;
 import java.sql.Time;
 import java.text.ParseException;
@@ -158,6 +159,8 @@ public class EventServlet extends HttpServlet {
                 }
                 doGet(req, resp);
             } else {
+//                Part nameInput = req.getPart("name");
+//                String name = nameInput.getName();
                 String name = req.getParameter("eventName");
                 String description = req.getParameter("eventDescription");
                 Date date = null;
@@ -176,6 +179,9 @@ public class EventServlet extends HttpServlet {
                 LocalTime parsedTime = LocalTime.parse(req.getParameter("eventTime").trim(), formatter);
                 Time time = Time.valueOf(parsedTime);
                 String location = req.getParameter("eventLocation");
+
+
+
                 String image = req.getParameter("eventImage");
                 String vipString = req.getParameter("eventNbrVIP");
                 Integer VIP = Integer.parseInt(vipString);
@@ -196,13 +202,4 @@ public class EventServlet extends HttpServlet {
                 doGet(req, resp);
             }
         }
-    private String convertEventToJson(Event event) {
-        // Create a Gson instance
-        Gson gson = new Gson();
-
-        // Convert the Event object to a JSON string
-        String json = gson.toJson(event);
-
-        return json;
-    }
     }

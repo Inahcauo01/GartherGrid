@@ -53,19 +53,22 @@ function addEvent() {
     form_events.save.innerHTML = "Save";
 }
 // edite
-function editEvent(id, name, description, location, date, hour, nbrStandard, nbrVIP, category_name){
+// function editEvent(id, name, description, location, date, hour, nbrStandard, nbrVIP, category_name){
+function editEvent(id){
     // action changes
+
+    alert(id)
     form_events.action = update_event.value;
 
-    form_events.id.value = id;
-    form_events.name.value = name;
-    form_events.description.value = description;
-    form_events.location.value = location;
-    form_events.date.value = date;
-    form_events.hour.value = hour;
-    form_events.nbrStandard.value = nbrStandard;
-    form_events.nbrVIP.value = nbrVIP;
-    form_events.category_name.value = category_name;
+    form_events.event_id.value = id;
+    form_events.eventNameEdit.value = name;
+    form_events.eventDescriptionEdit.value = description;
+    form_events.eventLocationEdit.value = location;
+    form_events.eventDateEdit.value = date;
+    form_events.eventTimeEdit.value = hour;
+    form_events.eventNbrStandardEdit.value = nbrStandard;
+    form_events.eventNbrVIPEdit.value = nbrVIP;
+    form_events.eventCategoryEdit.value = category_name;
 
     //btn save
     form_events.save.innerHTML = "Update";
