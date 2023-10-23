@@ -22,10 +22,11 @@ public class EventRepository {
         return event;
     }
 
-    public void update(Event event){
+    public Event update(Event event){
         em.getTransaction().begin();
         em.merge(event);
         em.getTransaction().commit();
+        return event;
     }
 
     public Event delete(Event event) {

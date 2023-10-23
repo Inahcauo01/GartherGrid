@@ -28,6 +28,10 @@ public class EventService {
         return eventRepository.find(id);
     }
 
+    public Event updateEvent(Event event){
+        return eventRepository.update(event);
+    }
+
     public Event deleteEvent(Event event){
         return eventRepository.delete(event);
     }

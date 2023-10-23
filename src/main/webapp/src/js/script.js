@@ -1,7 +1,7 @@
 //Form Categorys Modal
 const form_categorys = document.forms["form_categorys"];
-const add_country = document.querySelector("#add-event");
-const update_country = document.querySelector("#update-event");
+const add_country = document.querySelector("#add-category");
+const update_country = document.querySelector("#update-category");
 // add
 function addCategory() {
     //clear
@@ -31,4 +31,51 @@ function editCategory(id, username, email, job){
 
 }
 
-// remove methode PUT
+// delete
+function deleteCategory(id){
+    //soon
+}
+
+// ----------------------------------------------
+//Form Categorys Modal
+const form_events = document.forms["form_events"];
+const add_event = document.querySelector("#add-event");
+const update_event = document.querySelector("#update-event");
+// add
+function addEvent() {
+    //clear
+    form_events.reset();
+
+    // action changes
+    form_events.action = add_event.value;
+
+    //btn save
+    form_events.save.innerHTML = "Save";
+}
+// edite
+function editEvent(id, name, description, location, date, hour, nbrStandard, nbrVIP, category_name){
+    // action changes
+    form_events.action = update_event.value;
+
+    form_events.id.value = id;
+    form_events.name.value = name;
+    form_events.description.value = description;
+    form_events.location.value = location;
+    form_events.date.value = date;
+    form_events.hour.value = hour;
+    form_events.nbrStandard.value = nbrStandard;
+    form_events.nbrVIP.value = nbrVIP;
+    form_events.category_name.value = category_name;
+
+    //btn save
+    form_events.save.innerHTML = "Update";
+
+    //remove required picture -> 'if using picture you must remove required because you don't need change picture'
+    form_events.picture.removeAttribute('required');
+
+}
+
+// delete
+function deleteEvent(id){
+    //soon
+}
