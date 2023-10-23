@@ -1,9 +1,6 @@
 package com.example.f34tur3s.domain;
 
-import com.example.f34tur3s.domain.enums.Type;
 import jakarta.persistence.*;
-
-import java.util.Objects;
 
 @Entity
 public class Ticket {
@@ -36,6 +33,10 @@ public class Ticket {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Integer getNumber() {
