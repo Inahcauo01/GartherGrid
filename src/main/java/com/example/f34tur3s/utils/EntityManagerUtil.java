@@ -5,16 +5,14 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 public class EntityManagerUtil {
-    private static final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("my-persistence-unit");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
     private static EntityManager entityManager;
 
-    private EntityManagerUtil() {
-
-    }
+    private EntityManagerUtil() {}
 
     public static EntityManager getEntityManager() {
         if (entityManager == null || !entityManager.isOpen()) {
-            entityManager = entityManagerFactory.createEntityManager();
+            entityManager = emf.createEntityManager();
         }
         return entityManager;
     }

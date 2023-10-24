@@ -6,6 +6,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.transaction.Transactional;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
@@ -53,8 +55,23 @@ public class CategoryRepository {
         em.close();
     }
 
-    public Category findEvent(Long aLong) {
+    public Category findCategory(Long aLong) {
         EntityManager em = entityManagerFactory.createEntityManager();
         return em.find(Category.class, aLong);
+    }
+
+    public List<Category> findAll(){
+        EntityManager em = entityManagerFactory.createEntityManager();
+        String jpqlQuery = "SELECT c FROM Category c";
+        TypedQuery<Category> query = em.createQuery(jpqlQuery, Category.class);
+        return query.getResultList();
+    }
+
+    public static Category findByName(String categoryName) {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        String jpqlQuery = "SELECT c FROM Category c WHERE c.name = :name";
+        TypedQuery<Category> query = em.createQuery(jpqlQuery, Category.class);
+        query.setParameter("name", categoryName);
+        return query.getSingleResult();
     }
 }

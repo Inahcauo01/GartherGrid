@@ -10,6 +10,7 @@
 
 <%--B Content Dynamic--%>
 <jsp:include page="pages/home.jsp"></jsp:include>
+<%--<%@include file="pages/home.jsp"%>--%>
 <%--E Content Dynamic--%>
 
 <!-- B footer -->

@@ -9,7 +9,6 @@ import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
-
 public class EventRepository {
     private final EntityManager em;
     public EventRepository(EntityManager em){

@@ -1,6 +1,9 @@
 package com.example.f34tur3s.repository;
 
 import com.example.f34tur3s.domain.User;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import com.example.f34tur3s.utils.EntityManagerUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -16,7 +19,9 @@ public class UserRepository {
     public UserRepository() {
         entityManager = EntityManagerUtil.getEntityManager();
     }
-
+    public User findUser(Long id) {
+        return entityManager.find(User.class, id);
+    }
     public void save(User user) {
         entityManager.getTransaction().begin();
         entityManager.persist(user);
@@ -41,5 +46,4 @@ public class UserRepository {
         List<User> users = entityManager.createQuery("SELECT u FROM User u", User.class).getResultList();
         return users;
     }
-
 }
