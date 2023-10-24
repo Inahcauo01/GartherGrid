@@ -51,6 +51,7 @@ public class TicketServlet extends HttpServlet {
             ticket.setUser(user);
             TicketService reservationService = new TicketService();
             ResponseDTO response = reservationService.insertTicketService(ticket);
+            req.getRequestDispatcher("post-event.jsp").forward(req, resp);
         }
     }
 
