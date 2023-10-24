@@ -67,7 +67,7 @@ public class CategoryRepository {
         return query.getResultList();
     }
 
-    public static Category findByName(String categoryName) {
+    public Category findByName(String categoryName) {
         EntityManager em = entityManagerFactory.createEntityManager();
         String jpqlQuery = "SELECT c FROM Category c WHERE c.name = :name";
         TypedQuery<Category> query = em.createQuery(jpqlQuery, Category.class);
