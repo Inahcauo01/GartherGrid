@@ -26,7 +26,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/events.jsp", ""}, name = "events")
+@WebServlet(value = "/events", name = "events")
 
 public class EventServlet extends HttpServlet {
     EventService eventService;
@@ -45,13 +45,13 @@ public class EventServlet extends HttpServlet {
             // Fetch data from the repository via the service
             List<Event> events = eventService.getAllEvents();
 
-            System.out.println("Number of events retrieved: " + events.size());
+//            System.out.println("Number of events retrieved: " + events.size());
             // setting data as an attribute
-            System.out.println(events);
+//            System.out.println(events);
             req.setAttribute("events", events);
 
             // Forward to JSP page to display data
-            req.getRequestDispatcher("/pages/dashbaord/events.jsp").forward(req, resp);
+            req.getRequestDispatcher("/dashbaord/pages/events.jsp").forward(req, resp);
         } catch (Exception e) {
             throw e;
         }

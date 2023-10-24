@@ -7,6 +7,7 @@ import com.example.f34tur3s.service.dto.ResponseDTO;
 import com.example.f34tur3s.service.dto.ResponseStatus;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Random;
 
 public class TicketService {
@@ -18,7 +19,8 @@ public class TicketService {
     }
 
     public ResponseDTO insertTicketService(Ticket ticket){
-        if(LocalDateTime.now().isAfter(ticket.getEvent().getDate())){
+//        if(LocalDateTime.now().isAfter(ticket.getEvent().getDate())){
+        if (LocalDateTime.now().isAfter(ticket.getEvent().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())){
             return new ResponseDTO(ResponseStatus.ERROR,"THIS_EVENT_IS_PAST_DUE_DATE");
         } else if (!checkTicketAvailabilityService(ticket.getEvent())) {
             return new ResponseDTO(ResponseStatus.ERROR,"NO_TICKET_AVAILABLE");
