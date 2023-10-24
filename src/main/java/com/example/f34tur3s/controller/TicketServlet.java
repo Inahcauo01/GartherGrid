@@ -17,7 +17,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "ticket", value = {"/reservation-ticket"})
+@WebServlet(name = "ticket", value = {"/pages/reservation-ticket"})
+//@WebServlet(name = "ticket", urlPatterns = {"/reservation-ticket"})
 public class TicketServlet extends HttpServlet {
     EventService eventService;
 
@@ -35,15 +36,22 @@ public class TicketServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Long id_event = Long.valueOf(req.getParameter("id"));
-        Event event = eventService.getEventById(id_event);
-        req.setAttribute("event",event);
         User user = (User) req.getSession().getAttribute("user");
-        Ticket ticket = new Ticket();
-        ticket.setEvent(event);
-        ticket.setUser(user);
-        TicketService reservationService = new TicketService();
-        ResponseDTO response = reservationService.insertTicketService(ticket);
+        String msg;
+        if(user == null){
+            msg = "Sign in Required";
+            req.setAttribute("warning", msg);
+            req.getRequestDispatcher("/index.jsp").forward(req, resp);
+        }else{
+            Long id_event = Long.valueOf(req.getParameter("id"));
+            Event event = eventService.getEventById(id_event);
+            req.setAttribute("event",event);
+            Ticket ticket = new Ticket();
+            ticket.setEvent(event);
+            ticket.setUser(user);
+            TicketService reservationService = new TicketService();
+            ResponseDTO response = reservationService.insertTicketService(ticket);
+        }
     }
 
     protected void reservation(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

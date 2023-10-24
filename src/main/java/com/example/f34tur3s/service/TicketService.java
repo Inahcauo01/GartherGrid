@@ -7,6 +7,8 @@ import com.example.f34tur3s.service.dto.ResponseDTO;
 import com.example.f34tur3s.service.dto.ResponseStatus;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.Random;
 
 public class TicketService {
@@ -18,14 +20,18 @@ public class TicketService {
     }
 
     public ResponseDTO insertTicketService(Ticket ticket){
-        if(LocalDateTime.now().isAfter(ticket.getEvent().getDate())){
-            return new ResponseDTO(ResponseStatus.ERROR,"THIS_EVENT_IS_PAST_DUE_DATE");
+        //I will add this because im not using LocalDate in attribute date im using Date
+        Date eventDate = ticket.getEvent().getDate();
+        LocalDateTime eventLocalDateTime = eventDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+
+        if(LocalDateTime.now().isAfter(eventLocalDateTime)){
+            return new ResponseDTO(ResponseStatus.ERROR,"This event is past due date!");
         } else if (!checkTicketAvailabilityService(ticket.getEvent())) {
-            return new ResponseDTO(ResponseStatus.ERROR,"NO_TICKET_AVAILABLE");
+            return new ResponseDTO(ResponseStatus.ERROR,"No ticket available now!");
         }
         int randomPositiveNumber = random.nextInt(Integer.MAX_VALUE);
         ticket.setNumber(randomPositiveNumber);
-        return new ResponseDTO(ResponseStatus.CREATED,"TICKER_CREATED_SUCCESSFULLY",ticketRepository.addTicket(ticket));
+        return new ResponseDTO(ResponseStatus.CREATED,"Ticket created successfully",ticketRepository.addTicket(ticket));
     }
 
 
