@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(value = "/", name = "home")
+@WebServlet(value = "", name = "home")
 public class HomeServlet extends HttpServlet {
 
     EventService eventService;
@@ -39,7 +39,7 @@ public class HomeServlet extends HttpServlet {
             req.setAttribute("events", events);
 
             // Forward to JSP page to display data
-            req.getRequestDispatcher("/pages/home.jsp").forward(req, resp);
+            req.getRequestDispatcher("/index.jsp").forward(req, resp);
         } catch (Exception e) {
             throw e;
         }
