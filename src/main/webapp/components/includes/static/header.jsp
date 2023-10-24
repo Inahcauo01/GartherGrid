@@ -31,7 +31,9 @@
                            class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 dark:hover:text-second-50 dark:border-gray-700">Home</a>
                     </li>
                     <li>
-                        <a href="../../../pages/events.jsp"
+                        <a
+<%--                                href="../../../pages/events.jsp"--%>
+                                href="events"
                            class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 dark:hover:text-second-50 dark:border-gray-700">Events</a>
                     </li>
                     <li>
