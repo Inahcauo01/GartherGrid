@@ -1,41 +1,74 @@
 package com.example.f34tur3s.repository;
 
 import com.example.f34tur3s.domain.Category;
+import com.example.f34tur3s.domain.Event;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import jakarta.transaction.Transactional;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
 public class CategoryRepository {
-    private final EntityManager em;
-    public CategoryRepository(EntityManager em){
-        this.em = em;
+    private final EntityManagerFactory entityManagerFactory;
+    public CategoryRepository(){
+        entityManagerFactory= Persistence.createEntityManagerFactory("my-persistence-unit");
     }
 
-    public Category save(Category category){
-        em.getTransaction().begin();
-        em.persist(category);
-        em.getTransaction().commit();
-        return category;
+    public List<Category> getAllCategories() {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        return em.createQuery("SELECT c FROM Category c", Category.class).getResultList();
     }
 
-    public void update(Category category){
-        em.getTransaction().begin();
-        em.merge(category);
-        em.getTransaction().commit();
-    }
-
-    public Category find(long id){
+    public Category getCategoryById(Long id) {
+        EntityManager em = entityManagerFactory.createEntityManager();
         return em.find(Category.class, id);
     }
 
+    public Category createCategory(Category category) {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(category);
+        em.getTransaction().commit();
+        em.close();
+        return category;
+    }
+
+    public void updateCategory(Category category) {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        em.getTransaction().begin();
+        em.merge(category);
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public void deleteCategory(Long id) {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        em.getTransaction().begin();
+        Category category = em.find(Category.class, id);
+        if (category != null) {
+            em.remove(category);
+        }
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public Category findCategory(Long aLong) {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        return em.find(Category.class, aLong);
+    }
+
     public List<Category> findAll(){
+        EntityManager em = entityManagerFactory.createEntityManager();
         String jpqlQuery = "SELECT c FROM Category c";
         TypedQuery<Category> query = em.createQuery(jpqlQuery, Category.class);
         return query.getResultList();
     }
 
-    public static Category findByName(EntityManager em, String categoryName) {
+    public static Category findByName(String categoryName) {
+        EntityManager em = entityManagerFactory.createEntityManager();
         String jpqlQuery = "SELECT c FROM Category c WHERE c.name = :name";
         TypedQuery<Category> query = em.createQuery(jpqlQuery, Category.class);
         query.setParameter("name", categoryName);

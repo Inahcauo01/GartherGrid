@@ -117,7 +117,7 @@ public class EventServlet extends HttpServlet {
             String newStandardString = req.getParameter("eventNbrStandard");
             Integer newStandard = Integer.parseInt(newStandardString);
             String newCategoryString = req.getParameter("eventCategory");
-            Category newCategory = CategoryRepository.findByName(em, newCategoryString);
+            Category newCategory = CategoryRepository.findByName(newCategoryString);
             User organizer = new User();
             organizer.setId(1L);
 
@@ -188,7 +188,7 @@ public class EventServlet extends HttpServlet {
                 String standardString = req.getParameter("eventNbrStandard");
                 Integer standard = Integer.parseInt(standardString);
                 String categoryString = req.getParameter("eventCategory");
-                Category category = CategoryRepository.findByName(em, categoryString);
+                Category category = CategoryRepository.findByName(categoryString);
                 User organizer1 = new User();
                 organizer1.setId(1L);
 
