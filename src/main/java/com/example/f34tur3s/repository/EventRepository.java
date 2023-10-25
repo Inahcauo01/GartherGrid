@@ -10,44 +10,49 @@ import jakarta.persistence.TypedQuery;
 import java.util.List;
 
 public class EventRepository {
-    private final EntityManager em;
-    public EventRepository(EntityManager em){
-        this.em = em;
+    private final EntityManagerFactory entityManagerFactory;
+    public EventRepository(){
+        entityManagerFactory = Persistence.createEntityManagerFactory("my-persistence-unit");
     }
 
     public Event save(Event event){
-        em.getTransaction().begin();
-        em.persist(event);
-        em.getTransaction().commit();
+        EntityManager entityManager =entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.persist(event);
+        entityManager.getTransaction().commit();
         return event;
     }
 
     public Event update(Event event){
-        em.getTransaction().begin();
-        em.merge(event);
-        em.getTransaction().commit();
+        EntityManager entityManager =entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.merge(event);
+        entityManager.getTransaction().commit();
         return event;
     }
 
     public Event delete(Event event) {
-        em.getTransaction().begin();
+        EntityManager entityManager =entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
 
         if (event.getId() != null) {
-            em.remove(event);
+            entityManager.remove(event);
         }
 
-        em.getTransaction().commit();
+        entityManager.getTransaction().commit();
 
         return event;
     }
 
     public Event find(long id){
-        return em.find(Event.class, id);
+        EntityManager entityManager =entityManagerFactory.createEntityManager();
+        return entityManager.find(Event.class, id);
     }
 
     public List<Event> findAll(){
+        EntityManager entityManager =entityManagerFactory.createEntityManager();
         String jpqlQuery = "SELECT e FROM Event e";
-        TypedQuery<Event> query = em.createQuery(jpqlQuery, Event.class);
+        TypedQuery<Event> query = entityManager.createQuery(jpqlQuery, Event.class);
         return query.getResultList();
     }
 

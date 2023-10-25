@@ -17,15 +17,8 @@ public class EventService {
 
     private final EventRepository eventRepository;
 
-
-
-
-
-
-
-
-    public EventService(EventRepository eventRepository) {
-        this.eventRepository = eventRepository;
+    public EventService() {
+        eventRepository = new EventRepository();
     }
     public List<Event> updateCertainEvents(List<Event> events){
         List<Event> updatedEvents = events.stream().filter(e->updatingEventsConditions(e)!=null).map(e -> {

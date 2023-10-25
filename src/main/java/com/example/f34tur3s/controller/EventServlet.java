@@ -6,6 +6,7 @@ import com.example.f34tur3s.domain.User;
 import com.example.f34tur3s.repository.CategoryRepository;
 import com.example.f34tur3s.repository.EventRepository;
 import com.example.f34tur3s.repository.UserRepository;
+import com.example.f34tur3s.service.CategoryService;
 import com.example.f34tur3s.service.EventService;
 import com.example.f34tur3s.utils.EntityManagerUtil;
 import jakarta.persistence.EntityManager;
@@ -34,9 +35,7 @@ public class EventServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        EntityManager em = EntityManagerUtil.getEntityManager();
-        EventRepository eventRepository = new EventRepository(em);
-        eventService = new EventService(eventRepository);
+        eventService = new EventService();
     }
 
     @Override
@@ -63,30 +62,10 @@ public class EventServlet extends HttpServlet {
         String action = req.getParameter("action");
         System.out.println(action);
 
-        EntityManager em = EntityManagerUtil.getEntityManager();
-        EventRepository eventRepository = new EventRepository(em);
-        EventService eventService = new EventService(eventRepository);
+        EventService eventService = new EventService();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-//        if ("edit".equals(action)) {
-//            System.out.println("ediiiiiiiiit");
-//            // Handle Edit Action
-//            Long editEventId = Long.parseLong(req.getParameter("eventId"));
-//            System.out.println(editEventId);
-//            // Fetch the event data by eventId from your database
-//            // Replace this with your actual code to retrieve the event data
-//            Event event = eventService.getEventById(editEventId);
-//
-//            // Set the event data as a request attribute to populate the edit form
-////            req.setAttribute("event", event);
-//            String jsonResponse = convertEventToJson(event);
-//
-//            resp.setContentType("application/json");
-//            resp.getWriter().write(jsonResponse);
-//            // Forward to the JSP that displays the edit form
-////            req.getRequestDispatcher("/pages/dashbaord/editEvent.jsp").forward(req, resp);
-//        } else
             if ("Update".equals(action)) {
             System.out.println("updaaaaaaate");
             Long eventId = Long.parseLong(req.getParameter("eventId"));
@@ -116,35 +95,36 @@ public class EventServlet extends HttpServlet {
             Integer newVIP = Integer.parseInt(newVipString);
             String newStandardString = req.getParameter("eventNbrStandard");
             Integer newStandard = Integer.parseInt(newStandardString);
-            String newCategoryString = req.getParameter("eventCategory");
-            Category newCategory = CategoryRepository.findByName(newCategoryString);
+            Long newCategoryString = Long.valueOf(req.getParameter("eventCategory"));
+
+            CategoryService categoryService = new CategoryService();
+            Category newCategory = categoryService.findCategory(newCategoryString);
             User organizer = new User();
             organizer.setId(1L);
 
             // Fetch the existing event from your database
             Event existingEvent = eventService.getEventById(eventId);
 
-            if (existingEvent != null) {
-                // Update the event data with the edited information
-                existingEvent.setName(newName);
-                existingEvent.setDescription(newDescription);
-                existingEvent.setDate(newDate);
-                existingEvent.setHour(newTime);
-                existingEvent.setLocation(newLocation);
-                existingEvent.setImage(newImage);
-                existingEvent.setNbrVIP(newVIP);
-                existingEvent.setNbrStandard(newStandard);
-                existingEvent.setCategory(newCategory);
-                existingEvent.setOrganizer(organizer);
+                if (existingEvent != null) {
+                    // Update the event data with the edited information
+                    existingEvent.setName(newName);
+                    existingEvent.setDescription(newDescription);
+                    existingEvent.setDate(newDate);
+                    existingEvent.setHour(newTime);
+                    existingEvent.setLocation(newLocation);
+                    existingEvent.setImage(newImage);
+                    existingEvent.setNbrVIP(newVIP);
+                    existingEvent.setNbrStandard(newStandard);
+                    existingEvent.setCategory(newCategory);
+                    existingEvent.setOrganizer(organizer);
 
-                // Save the updated event in your database
-                eventService.updateEvent(existingEvent);
+                    // Save the updated event in your database
+                    eventService.updateEvent(existingEvent);
 
-                // Redirect to the events listing page or show a success message
-                doGet(req, resp);
-            }
+                    // Redirect to the events listing page or show a success message
+                    doGet(req, resp);
+                }
             } else if ("delete".equals(action)) {
-                System.out.println("deleeeeeeete");
                 // Handle the delete action
                 String deleteEventIdString = req.getParameter("eventId");
                 Long deleteEventId = Long.parseLong(deleteEventIdString);
@@ -187,8 +167,10 @@ public class EventServlet extends HttpServlet {
                 Integer VIP = Integer.parseInt(vipString);
                 String standardString = req.getParameter("eventNbrStandard");
                 Integer standard = Integer.parseInt(standardString);
-                String categoryString = req.getParameter("eventCategory");
-                Category category = CategoryRepository.findByName(categoryString);
+                Long categoryID = Long.valueOf(req.getParameter("eventCategory"));
+
+                CategoryService categoryService = new CategoryService();
+                Category category = categoryService.findCategory(categoryID);
                 User organizer1 = new User();
                 organizer1.setId(1L);
 

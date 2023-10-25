@@ -32,6 +32,7 @@ public class CategoryService {
     }
 
     public Category findCategory(Long categoryID){
-        return categoryRepository.findCategory(categoryID);
+        return categoryRepository.findEvent(categoryID);
     }
+
 }
