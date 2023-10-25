@@ -47,7 +47,8 @@ public class AuthenticationFilter implements Filter {
     public boolean reachablePathWithoutLogging() {
 //        return reachablePathsWithoutAuthentication.stream()
 //                .anyMatch(httpRequest.getRequestURL().toString()::contains);
-        return httpRequest.getRequestURI().endsWith("index.jsp");
+//        return httpRequest.getRequestURI().endsWith("index.jsp");
+        return true;
     }
 
 }
