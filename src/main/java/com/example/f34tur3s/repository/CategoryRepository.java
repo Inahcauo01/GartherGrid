@@ -11,8 +11,9 @@ import java.util.List;
 
 public class CategoryRepository {
     private final EntityManagerFactory entityManagerFactory;
-    public CategoryRepository(){
-        entityManagerFactory= Persistence.createEntityManagerFactory("my-persistence-unit");
+
+    public CategoryRepository() {
+        entityManagerFactory = Persistence.createEntityManagerFactory("my-persistence-unit");
     }
 
     public List<Category> getAllCategories() {
