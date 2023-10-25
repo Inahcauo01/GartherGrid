@@ -23,8 +23,8 @@ public class HomeServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         EntityManager em = EntityManagerUtil.getEntityManager();
-        EventRepository eventRepository = new EventRepository(em);
-        eventService = new EventService(eventRepository);
+        EventRepository eventRepository = new EventRepository();
+        eventService = new EventService();
     }
 
     @Override

@@ -25,8 +25,8 @@ public class TicketServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         EntityManager em = EntityManagerUtil.getEntityManager();
-        EventRepository eventRepository = new EventRepository(em);
-        eventService = new EventService(eventRepository);
+        EventRepository eventRepository = new EventRepository();
+        eventService = new EventService();
     }
 
     @Override

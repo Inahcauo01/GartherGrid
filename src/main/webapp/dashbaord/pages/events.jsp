@@ -61,7 +61,7 @@
                                                     <select
                                                             class="block w-full px-4 py-3 mb-2 text-sm placeholder-gray-500 bg-white border rounded appearance-none dark:text-gray-400 dark:border-primary-50 dark:bg-primary-100"
                                                             name="eventCategory">
-                                                        <option value="dfghjk">dfghjk</option>
+                                                        <option value="1">dfghjk</option>
                                                     </select>
                                                     <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-500 pointer-events-none">
                                                         <svg class="w-4 h-4 fill-current"
@@ -195,7 +195,7 @@
 <%--                                    ################ edit event form--%>
                                     <form action="" method="post" class="edit-modal" id="update-event">
                                         <!-- Include a hidden input field for the event_id -->
-                                        <input type="hidden" name="event_id" id="id">
+                                        <input type="hidden" name="eventId" id="id">
                                         <div class="container px-4 mx-auto"></div>
                                         <div class="mb-6">
                                             <label class="block mb-2 text-sm font-medium dark:text-gray-400">Name:</label>
