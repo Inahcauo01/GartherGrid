@@ -14,6 +14,20 @@ import java.util.stream.Stream;
 public class UserService {
     final UserRepository userRepository = new UserRepository();
 
+    public static boolean isValid(String email)
+    {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null){
+            return false;
+        }
+        return pat.matcher(email).matches();
+    }
+
     public void register(User user) {
         if (!user.getUsername().isEmpty() && user.getUsername() != null
                 && !user.getFirstName().isEmpty() && user.getFirstName() != null
@@ -51,22 +65,6 @@ public class UserService {
     private String hashPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
-
-
-    public static boolean isValid(String email)
-    {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
-                "[a-zA-Z0-9_+&*-]+)*@" +
-                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
-                "A-Z]{2,7}$";
-
-        Pattern pat = Pattern.compile(emailRegex);
-        if (email == null){
-            return false;
-        }
-        return pat.matcher(email).matches();
-    }
-
 }
 
 

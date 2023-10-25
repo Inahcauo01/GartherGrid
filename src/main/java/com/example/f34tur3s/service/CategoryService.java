@@ -21,7 +21,7 @@ public class CategoryService {
 
 
     public Category saveCategory(String name, String description, String image) throws IOException {
-        Category category = new Category(name, description);
+        Category category = new Category(name, description, image);
         category.setImage(image);
         return categoryRepository.createCategory(category);
     }
@@ -32,6 +32,7 @@ public class CategoryService {
     }
 
     public Category findCategory(Long categoryID){
-        return categoryRepository.findEvent(categoryID);
+        return categoryRepository.findCategory(categoryID);
     }
+
 }

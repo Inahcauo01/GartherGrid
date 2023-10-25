@@ -17,7 +17,7 @@ public class AuthenticationFilter implements Filter {
     private HttpServletRequest httpRequest;
     private HttpServletResponse httpResponse;
 
-    private final List<String> reachablePathsWithoutAuthentication = Arrays.asList("/","index.jsp");
+    private final List<String> reachablePathsWithoutAuthentication = Arrays.asList("/register", "/login", "index.jsp", "/pages/post-event.jsp", "pages/events.jsp");
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -30,10 +30,10 @@ public class AuthenticationFilter implements Filter {
 
         User loggedUser = (User) httpSession.getAttribute("user");
 
-        if (loggedUser != null && reachablePathWithoutLogging()) {
-            httpResponse.sendRedirect(httpRequest.getContextPath() + "/index.jsp"); // Modify this to the desired authorized page
-            return;
-        }
+//        if (loggedUser != null && reachablePathWithoutLogging()) {
+//            httpResponse.sendRedirect(httpRequest.getContextPath() + "/index.jsp"); // Modify this to the desired authorized page
+//            return;
+//        }
 
         // This Condition Is For Not Accesseding Other Pages Without Logging In
         if (loggedUser == null && !reachablePathWithoutLogging()) {

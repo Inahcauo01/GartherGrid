@@ -53,14 +53,22 @@ function addEvent() {
     form_events.save.innerHTML = "Save";
 }
 // edite
-function editEvent(id, username, email, job){
+// function editEvent(id, name, description, location, date, hour, nbrStandard, nbrVIP, category_name){
+function editEvent(id){
     // action changes
+
+    alert(id)
     form_events.action = update_event.value;
 
-    form_events.id.value = id;
-    form_events.username.value = username;
-    form_events.email.value = email;
-    form_events.job.value = job;
+    form_events.event_id.value = id;
+    form_events.eventNameEdit.value = name;
+    form_events.eventDescriptionEdit.value = description;
+    form_events.eventLocationEdit.value = location;
+    form_events.eventDateEdit.value = date;
+    form_events.eventTimeEdit.value = hour;
+    form_events.eventNbrStandardEdit.value = nbrStandard;
+    form_events.eventNbrVIPEdit.value = nbrVIP;
+    form_events.eventCategoryEdit.value = category_name;
 
     //btn save
     form_events.save.innerHTML = "Update";
@@ -71,6 +79,6 @@ function editEvent(id, username, email, job){
 }
 
 // delete
-function deleteEvent(id){
+function deleteEvent(id) {
     //soon
 }

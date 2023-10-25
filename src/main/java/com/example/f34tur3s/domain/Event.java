@@ -3,6 +3,7 @@ package com.example.f34tur3s.domain;
 import jakarta.persistence.*;
 
 import java.sql.Time;
+import java.time.chrono.ChronoLocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -29,26 +30,26 @@ public class Event {
     public Event() {
     }
 
-    public Event(String name, Date date, Time hour, String location, String description, Integer nbrStandard, Integer nbrVIP, Category category, User organizer) {
+    public Event(String name, Date date, Time hour, String location, String description, String image, Integer nbrStandard, Integer nbrVIP, Category category, User organizer) {
         this.name = name;
         this.date = date;
         this.hour = hour;
         this.location = location;
         this.description = description;
-//        this.image = image;
+        this.image = image;
         this.nbrStandard = nbrStandard;
         this.nbrVIP = nbrVIP;
         this.category = category;
         this.organizer = organizer;
     }
 
-//    public String getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(String image) {
-//        this.image = image;
-//    }
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public void setId(Long id) {
         this.id = id;

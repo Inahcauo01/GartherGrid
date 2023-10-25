@@ -1,9 +1,6 @@
 package com.example.f34tur3s.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -19,10 +16,10 @@ public class Category {
     public Category() {
     }
 
-    public Category(String name, String description) {
+    public Category(String name, String description, String image) {
         this.name = name;
         this.description = description;
-//        this.image = image;
+        this.image = image;
     }
 
     public String getImage() {

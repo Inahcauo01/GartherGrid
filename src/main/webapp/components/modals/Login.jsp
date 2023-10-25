@@ -84,9 +84,8 @@
                     <input type="username" name="username" id="floating_username"
                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-second-100 focus:outline-none focus:ring-0 focus:border-second-100 peer"
                            placeholder=" " required />
-                    <label for="floating_username" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-second-100 peer-focus:dark:text-second-100 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                        Username
-                    </label>
+                    <label for="floating_username"
+                           class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-second-100 peer-focus:dark:text-second-100 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Username</label>
                 </div>
 
                 <div class="relative z-0 w-full mb-6 group">
@@ -140,9 +139,9 @@
                         with the <a href="#" class="text-second-50 hover:underline dark:text-second-50">terms and
                             conditions</a></label>
                 </div>
-                <button type="submit" class="w-full text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center border-4 border-second-100 items-center hover:bg-second-100 ease-linear transition delay-100">
-                    Sign in
-                </button>
+                <button type="submit"
+                        class="w-full text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center border-4 border-second-100 items-center hover:bg-second-100 ease-linear transition delay-100">Sign
+                    in</button>
                 <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                     Don’t have an account yet? <a href="#" data-modal-toggle="modal-sign-in"
                                                   data-modal-hide="modal-sign-up"

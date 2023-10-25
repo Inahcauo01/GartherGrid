@@ -458,9 +458,9 @@
                     </div>
                     <div class="mb-6 "></div>
                     <div class="flex gap-4 mb-6">
-                        <button type="submit"
+                        <a href="reservation-ticket?id=1"
                                 class="w-full text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-second-100 items-center border-4 border-second-100 hover:bg-transparent ease-linear transition delay-400">
-                            Reserve now !</button>
+                            Reserve now !</a>
                     </div>
                 </div>
             </div>

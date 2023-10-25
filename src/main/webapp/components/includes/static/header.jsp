@@ -31,13 +31,16 @@
                            class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 dark:hover:text-second-50 dark:border-gray-700">Home</a>
                     </li>
                     <li>
-                        <a href="../../../pages/events.jsp"
+                        <a
+<%--                                href="../../../pages/events.jsp"--%>
+                                href="events"
                            class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 dark:hover:text-second-50 dark:border-gray-700">Events</a>
                     </li>
                     <li>
                         <a href="#"
                            class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 dark:hover:text-second-50 dark:border-gray-700">Contact</a>
                     </li>
+                    <%if(session.getAttribute("user")==null){%>
                     <%-- Btn login modal if not user exist--%>
                     <li>
                         <a href="#" id="defaultModalButton" data-modal-toggle="modal-sign-in"
@@ -48,6 +51,7 @@
                                       d="M9.29 15.88L13.17 12L9.29 8.12a.996.996 0 1 1 1.41-1.41l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3a.996.996 0 0 1-1.41 0c-.38-.39-.39-1.03 0-1.42z" />
                             </svg></a>
                     </li>
+                    <%}%>
                     <%--B user if exist--%>
                     <%if(session.getAttribute("user")!=null){%>
                         <li class="mt-3 lg:mt-0">
