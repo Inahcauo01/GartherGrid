@@ -63,70 +63,72 @@
                 technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
         </div>
         <div class="justify-items-center grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-8 gap-5">
-            <div class="flex flex-col justify-center items-center">
-                <img class="w-24 h-24 rounded-full object-cover"
-                     src="https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                     alt="">
-                <div class="font-medium dark:text-white">
-                    <p>Music</p>
+            <c:forEach items="${categories}" var="category">
+                <div class="flex flex-col justify-center items-center">
+                    <img class="w-24 h-24 rounded-full object-cover"
+                         src="https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                         alt="">
+                    <div class="font-medium dark:text-white">
+                        <p>${category.name}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="flex flex-col justify-center items-center">
-                <img class="w-24 h-24 rounded-full object-cover"
-                     src="https://images.unsplash.com/photo-1556168505-d00e911d52eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1975&q=80"
-                     alt="">
-                <div class="font-medium dark:text-white">
-                    <p>Sport</p>
-                </div>
-            </div>
-            <div class="flex flex-col justify-center items-center">
-                <img class="w-24 h-24 rounded-full object-cover"
-                     src="https://images.unsplash.com/photo-1598495496118-f8763b94bde5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                     alt="">
-                <div class="font-medium dark:text-white">
-                    <p>Nightlife</p>
-                </div>
-            </div>
-            <div class="flex flex-col justify-center items-center">
-                <img class="w-24 h-24 rounded-full object-cover"
-                     src="https://images.unsplash.com/photo-1566471782233-c71f71e9a31d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2127&q=80"
-                     alt="">
-                <div class="font-medium dark:text-white">
-                    <p>Holidays</p>
-                </div>
-            </div>
-            <div class="flex flex-col justify-center items-center">
-                <img class="w-24 h-24 rounded-full object-cover"
-                     src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1999&q=80"
-                     alt="">
-                <div class="font-medium dark:text-white">
-                    <p>Health</p>
-                </div>
-            </div>
-            <div class="flex flex-col justify-center items-center">
-                <img class="w-24 h-24 rounded-full object-cover"
-                     src="https://images.unsplash.com/photo-1665686310934-8fab52b3821b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                     alt="">
-                <div class="font-medium dark:text-white">
-                    <p>Business</p>
-                </div>
-            </div>
-            <div class="flex flex-col justify-center items-center">
-                <img class="w-24 h-24 rounded-full object-cover"
-                     src="https://images.unsplash.com/photo-1598815272841-4e85a77e0a67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
-                     alt="">
-                <div class="font-medium dark:text-white">
-                    <p>Hobbies</p>
-                </div>
-            </div>
-            <div class="flex flex-col justify-center items-center">
-                <img class="w-24 h-24 rounded-full object-cover"
-                     src="https://images.unsplash.com/photo-1458682625221-3a45f8a844c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
-                     alt="">
-                <div class="font-medium dark:text-white">
-                    <p>Others</p>
-                </div>
-            </div>
+            </c:forEach>
+<%--            <div class="flex flex-col justify-center items-center">--%>
+<%--                <img class="w-24 h-24 rounded-full object-cover"--%>
+<%--                     src="https://images.unsplash.com/photo-1556168505-d00e911d52eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1975&q=80"--%>
+<%--                     alt="">--%>
+<%--                <div class="font-medium dark:text-white">--%>
+<%--                    <p>Sport</p>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="flex flex-col justify-center items-center">--%>
+<%--                <img class="w-24 h-24 rounded-full object-cover"--%>
+<%--                     src="https://images.unsplash.com/photo-1598495496118-f8763b94bde5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"--%>
+<%--                     alt="">--%>
+<%--                <div class="font-medium dark:text-white">--%>
+<%--                    <p>Nightlife</p>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="flex flex-col justify-center items-center">--%>
+<%--                <img class="w-24 h-24 rounded-full object-cover"--%>
+<%--                     src="https://images.unsplash.com/photo-1566471782233-c71f71e9a31d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2127&q=80"--%>
+<%--                     alt="">--%>
+<%--                <div class="font-medium dark:text-white">--%>
+<%--                    <p>Holidays</p>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="flex flex-col justify-center items-center">--%>
+<%--                <img class="w-24 h-24 rounded-full object-cover"--%>
+<%--                     src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1999&q=80"--%>
+<%--                     alt="">--%>
+<%--                <div class="font-medium dark:text-white">--%>
+<%--                    <p>Health</p>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="flex flex-col justify-center items-center">--%>
+<%--                <img class="w-24 h-24 rounded-full object-cover"--%>
+<%--                     src="https://images.unsplash.com/photo-1665686310934-8fab52b3821b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"--%>
+<%--                     alt="">--%>
+<%--                <div class="font-medium dark:text-white">--%>
+<%--                    <p>Business</p>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="flex flex-col justify-center items-center">--%>
+<%--                <img class="w-24 h-24 rounded-full object-cover"--%>
+<%--                     src="https://images.unsplash.com/photo-1598815272841-4e85a77e0a67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"--%>
+<%--                     alt="">--%>
+<%--                <div class="font-medium dark:text-white">--%>
+<%--                    <p>Hobbies</p>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="flex flex-col justify-center items-center">--%>
+<%--                <img class="w-24 h-24 rounded-full object-cover"--%>
+<%--                     src="https://images.unsplash.com/photo-1458682625221-3a45f8a844c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"--%>
+<%--                     alt="">--%>
+<%--                <div class="font-medium dark:text-white">--%>
+<%--                    <p>Others</p>--%>
+<%--                </div>--%>
+<%--            </div>--%>
         </div>
     </div>
 </section>
@@ -207,7 +209,7 @@
                         <div class="items-center bg-gray-50 border shadow dark:bg-primary-100 dark:border-primary-50">
                             <a href="#">
                                 <img class="w-full h-56 object-cover"
-                                     src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png"
+                                     src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                      alt="Bonnie Avatar">
                             </a>
                             <div class="p-5">

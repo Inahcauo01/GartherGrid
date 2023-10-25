@@ -1,6 +1,8 @@
 package com.example.f34tur3s.controller;
 
+import com.example.f34tur3s.domain.Category;
 import com.example.f34tur3s.domain.Event;
+import com.example.f34tur3s.service.CategoryService;
 import com.example.f34tur3s.service.EventService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -27,11 +29,10 @@ public class HomeServlet extends HttpServlet {
         try {
             // Fetch data from the repository via the service
             List<Event> events = eventService.getAllEvents();
+            List<Category> categories = new CategoryService().getAllCategories();
 
-            System.out.println("Number of events retrieved: " + events.size());
-            // setting data as an attribute
-            System.out.println(events);
             req.setAttribute("events", events);
+            req.setAttribute("categories", categories);
 
             // Forward to JSP page to display data
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
