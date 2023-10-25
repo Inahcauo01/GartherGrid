@@ -1,10 +1,7 @@
 package com.example.f34tur3s.controller;
 
 import com.example.f34tur3s.domain.Event;
-import com.example.f34tur3s.repository.EventRepository;
 import com.example.f34tur3s.service.EventService;
-import com.example.f34tur3s.utils.EntityManagerUtil;
-import jakarta.persistence.EntityManager;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -22,8 +19,6 @@ public class HomeServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        EntityManager em = EntityManagerUtil.getEntityManager();
-        EventRepository eventRepository = new EventRepository();
         eventService = new EventService();
     }
 

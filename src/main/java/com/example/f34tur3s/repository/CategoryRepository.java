@@ -54,7 +54,7 @@ public class CategoryRepository {
         em.close();
     }
 
-    public Category findEvent(Long aLong) {
+    public Category findCategory(Long aLong) {
         EntityManager em = entityManagerFactory.createEntityManager();
         return em.find(Category.class, aLong);
     }
