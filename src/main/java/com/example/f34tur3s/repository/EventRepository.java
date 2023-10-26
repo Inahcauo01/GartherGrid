@@ -4,6 +4,9 @@ import com.example.f34tur3s.domain.Event;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class EventRepository {
     private final EntityManagerFactory entityManagerFactory;
@@ -18,6 +21,7 @@ public class EventRepository {
         entityManager.getTransaction().commit();
         entityManager.close();
     }
+
 
 
 }

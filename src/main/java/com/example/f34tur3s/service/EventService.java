@@ -1,5 +1,6 @@
 package com.example.f34tur3s.service;
 
+import com.example.f34tur3s.domain.Event;
 import com.example.f34tur3s.repository.EventRepository;
 
 public class EventService {
@@ -9,4 +10,5 @@ public class EventService {
     public EventService() {
         this.eventRepository = new EventRepository();
     }
+
 }

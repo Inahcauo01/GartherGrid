@@ -27,5 +27,6 @@ public class EventServlet extends HttpServlet {
 //        req.setAttribute("msg",msg);
 //
 //        getServletContext().getRequestDispatcher("/WEB-INF/pageEvent.jsp").forward(req, resp);
+
     }
 }

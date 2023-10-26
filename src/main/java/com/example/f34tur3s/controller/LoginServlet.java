@@ -2,6 +2,7 @@ package com.example.f34tur3s.controller;
 
 import com.example.f34tur3s.domain.Role;
 import com.example.f34tur3s.domain.User;
+import com.example.f34tur3s.repository.UserRepository;
 import com.example.f34tur3s.service.UserAlreadyExistsException;
 import com.example.f34tur3s.service.UserService;
 import jakarta.servlet.ServletException;
@@ -23,10 +24,10 @@ public class LoginServlet extends HttpServlet {
 
         String email=request.getParameter("email");
         String password=request.getParameter("password");
-        UserService userService= new UserService();
+        UserService userService= new UserService(new UserRepository());
 
         PrintWriter out=response.getWriter();
-
+        //out.close();
         Optional<User> userOptional=userService.login(email,password);
         if(userOptional.isPresent()){
             HttpSession session = request.getSession();

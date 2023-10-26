@@ -3,9 +3,6 @@ package com.example.f34tur3s.repository;
 import com.example.f34tur3s.domain.User;
 import com.example.f34tur3s.utils.EntityManagerUtil;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
 
 import java.util.List;
 import java.util.stream.Stream;

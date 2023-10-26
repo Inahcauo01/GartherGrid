@@ -12,7 +12,11 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class UserService {
-    final UserRepository userRepository = new UserRepository();
+    final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository){
+        this.userRepository=userRepository;
+    }
 
     public static boolean isValid(String email)
     {

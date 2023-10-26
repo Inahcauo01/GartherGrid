@@ -25,7 +25,7 @@ public class RegistrationServlet extends HttpServlet {
         String password=request.getParameter("password");
         Role role=new Role(1,"user");
         User user=new User(username,firstName,lastName,email,password,role);
-        UserService userService= new UserService();
+        UserService userService= new UserService(new UserRepository());
 
         PrintWriter out=response.getWriter();
         try {
