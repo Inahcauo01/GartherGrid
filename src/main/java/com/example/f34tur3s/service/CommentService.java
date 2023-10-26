@@ -1,6 +1,7 @@
 package com.example.f34tur3s.service;
 
 import com.example.f34tur3s.domain.Comment;
+import com.example.f34tur3s.domain.User;
 import com.example.f34tur3s.repository.CommentRepository;
 
 import java.util.List;
@@ -41,6 +42,10 @@ public class CommentService {
     private void validateComment(Comment comment) {
         if (comment == null) {
             throw new IllegalArgumentException("Comment cannot be null.");
+        }
+        //regler testCreateCommentNull
+        if (comment.getUser() == null || comment.getUser().equals(new User())) {
+            throw new IllegalArgumentException("User must not be null.");
         }
 
         if (comment.getText() == null || comment.getText().trim().isEmpty()) {

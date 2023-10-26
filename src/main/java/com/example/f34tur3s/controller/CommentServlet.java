@@ -77,7 +77,7 @@ public class CommentServlet extends HttpServlet {
 
         User user = (User) req.getSession().getAttribute("user");
 
-//        TODO :
+//        TODO : get event from id event in parametre from servlet :)
         Event event = new EventRepository().find(1L);
 
         Comment comment = new Comment(commentText, review, user, event);
