@@ -2,7 +2,9 @@ package com.example.f34tur3s.controller;
 
 
 import com.example.f34tur3s.domain.Comment;
+import com.example.f34tur3s.domain.Event;
 import com.example.f34tur3s.domain.User;
+import com.example.f34tur3s.repository.EventRepository;
 import com.example.f34tur3s.repository.UserRepository;
 import com.example.f34tur3s.service.CommentService;
 import jakarta.servlet.ServletException;
@@ -16,6 +18,7 @@ import java.util.List;
 
 @WebServlet(urlPatterns = {"/comments", "/deleteComment", "/editComment"})
 public class CommentServlet extends HttpServlet {
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,10 +38,12 @@ public class CommentServlet extends HttpServlet {
         String commentText = req.getParameter("commentText");
         Integer review = Integer.valueOf(req.getParameter("review"));
 
-//        en attendant l'authentification et la session d'utilisateur
-        User user = new UserRepository().findById(1L);
+        User user = (User) req.getSession().getAttribute("user");
 
-        Comment comment = new Comment(commentText, review, user);
+//        TODO :
+        Event event = new EventRepository().find(1L);
+
+        Comment comment = new Comment(commentText, review, user, event);
 
         CommentService commentService = new CommentService();
         Comment c = commentService.createComment(comment);
@@ -56,6 +61,8 @@ public class CommentServlet extends HttpServlet {
         CommentService commentService = new CommentService();
         commentService.deleteComment(commentId);
 
-        resp.sendRedirect(req.getContextPath() + "/comments");
+        List<Comment> comments = commentService.getAllComments();
+        req.setAttribute("comments", comments);
+        req.getRequestDispatcher("/WEB-INF/commentSection.jsp").forward(req, resp);
     }
 }

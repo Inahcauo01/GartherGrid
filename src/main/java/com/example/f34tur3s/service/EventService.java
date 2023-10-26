@@ -20,33 +20,9 @@ public class EventService {
     public EventService() {
         eventRepository = new EventRepository();
     }
-    public List<Event> updateCertainEvents(List<Event> events){
-        List<Event> updatedEvents = events.stream().filter(e->updatingEventsConditions(e)!=null).map(e -> {
-            Event event = new Event();
-            event.setDate(e.getDate());
-            event.setName(e.getName());
-            return event;
-        }).collect(Collectors.toList());
 
-
-        return updatedEvents;
-    }
-
-    public Integer updatingEventsConditions(Event event){
-        Date today = new Date();
-        Date eventDate = event.getDate();
-        if (eventDate.before(today)){
-            TicketRepository ticketRepository = new TicketRepository();
-            List<Ticket> tickets = ticketRepository.getAllTicket();
-            List<Ticket> eventsTickets = tickets.stream().filter(t -> t.getEvent().equals(event)).collect(Collectors.toList());
-            if (eventsTickets.size()<20){
-                return eventsTickets.size();
-            }
-        }
-        return null;
-    }
     public Event createEvent(Event event){
-//        validate(event);
+        validation(event);
         return eventRepository.save(event);
     }
 
@@ -66,13 +42,62 @@ public class EventService {
         return eventRepository.delete(event);
     }
 
-    private void validate(Event event){
-        Date today = new Date();
-        if (event.getName().isBlank() || event.getLocation().isBlank() || event.getDescription().isBlank()){
-            throw new IllegalArgumentException("All fields needed");
+//    private void validate(Event event){
+//        Date today = new Date();
+//        if (event.getName().isBlank() || event.getLocation().isBlank() || event.getDescription().isBlank()){
+//            throw new IllegalArgumentException("All fields needed");
+//        }
+//        if (event.getDate().before(today)){
+//            throw new IllegalArgumentException("Date not valid");
+//        }
+//    }
+    private void validation(Event event) {
+        if (event == null) {
+            throw new IllegalArgumentException("The event is null");
         }
-        if (event.getDate().before(today)){
-            throw new IllegalArgumentException("Date not valid");
+
+        if (event.getName() == null || event.getName().isBlank()) {
+            throw new IllegalArgumentException("The name field is required");
+        }
+
+        if (event.getDate() == null) {
+            throw new IllegalArgumentException("The date field is required");
+        }
+
+        if (event.getOrganizer() == null) {
+            throw new IllegalArgumentException("No organizer has been selected");
+        }
+
+        if (event.getCategory() == null) {
+            throw new IllegalArgumentException("No category has been selected");
+        }
+
+        if (event.getNbrVIP() == null) {
+            throw new IllegalArgumentException("The number of vip's field is required");
+        }
+
+        if (event.getNbrStandard() == null) {
+            throw new IllegalArgumentException("The number of standard's field is required");
+        }
+
+        if (event.getHour() == null) {
+            throw new IllegalArgumentException("The time field is required");
+        }
+
+        if (event.getLocation() == null || event.getLocation().isBlank()) {
+            throw new IllegalArgumentException("The location field is required");
+        }
+
+        if (event.getDescription() == null || event.getDescription().isBlank()) {
+            throw new IllegalArgumentException("The description field is required");
+        }
+
+        if (event.getImage() == null || event.getImage().isBlank()) {
+            throw new IllegalArgumentException("The image field is required");
+        }
+
+        if (event.getDate().before(new Date())) {
+            throw new IllegalArgumentException("The date should be in the future");
         }
     }
 }
