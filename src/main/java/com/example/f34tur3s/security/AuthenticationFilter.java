@@ -17,7 +17,7 @@ public class AuthenticationFilter implements Filter {
     private HttpServletRequest httpRequest;
     private HttpServletResponse httpResponse;
 
-    private final List<String> reachablePathsWithoutAuthentication = Arrays.asList("/register", "/login", "index.jsp", "/pages/post-event.jsp", "pages/events.jsp");
+//    private final List<String> reachablePathsWithoutAuthentication = Arrays.asList("/register", "/login", "index.jsp", "/pages/post-event.jsp", "pages/events.jsp");
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -36,19 +36,19 @@ public class AuthenticationFilter implements Filter {
 //        }
 
         // This Condition Is For Not Accesseding Other Pages Without Logging In
-        if (loggedUser == null && !reachablePathWithoutLogging()) {
-            httpResponse.sendRedirect(httpRequest.getContextPath() + "/index.jsp");
-            return;
-        }
+//        if (loggedUser == null && !reachablePathWithoutLogging()) {
+//            httpResponse.sendRedirect(httpRequest.getContextPath() + "/index.jsp");
+//            return;
+//        }
 
         chain.doFilter(request, response);
     }
 
-    public boolean reachablePathWithoutLogging() {
-        return reachablePathsWithoutAuthentication.stream()
-                .anyMatch(httpRequest.getRequestURL().toString()::contains);
-//        return httpRequest.getRequestURI().endsWith("index.jsp");
-//        return true;
-    }
+//    public boolean reachablePathWithoutLogging() {
+//        return reachablePathsWithoutAuthentication.stream()
+//                .anyMatch(httpRequest.getRequestURL().toString()::contains);
+////        return httpRequest.getRequestURI().endsWith("index.jsp");
+////        return true;
+//    }
 
 }

@@ -20,33 +20,37 @@ public class EventService {
     public EventService() {
         eventRepository = new EventRepository();
     }
-    public List<Event> updateCertainEvents(List<Event> events){
-        List<Event> updatedEvents = events.stream().filter(e->updatingEventsConditions(e)!=null).map(e -> {
-            Event event = new Event();
-            event.setDate(e.getDate());
-            event.setName(e.getName());
-            return event;
-        }).collect(Collectors.toList());
 
-
-        return updatedEvents;
+    public EventService(EventRepository eventRepository) {
+        this.eventRepository = eventRepository;
     }
 
-    public Integer updatingEventsConditions(Event event){
-        Date today = new Date();
-        Date eventDate = event.getDate();
-        if (eventDate.before(today)){
-            TicketRepository ticketRepository = new TicketRepository();
-            List<Ticket> tickets = ticketRepository.getAllTicket();
-            List<Ticket> eventsTickets = tickets.stream().filter(t -> t.getEvent().equals(event)).collect(Collectors.toList());
-            if (eventsTickets.size()<20){
-                return eventsTickets.size();
-            }
-        }
-        return null;
-    }
+    //    public List<Event> updateCertainEvents(List<Event> events){
+//        List<Event> updatedEvents = events.stream().filter(e->updatingEventsConditions(e)!=null).map(e -> {
+//            Event event = new Event();
+//            event.setDate(e.getDate());
+//            event.setName(e.getName());
+//            return event;
+//        }).collect(Collectors.toList());
+//
+//        return updatedEvents;
+//    }
+
+//    public Integer updatingEventsConditions(Event event){
+//        Date today = new Date();
+//        Date eventDate = event.getDate();
+//        if (eventDate.before(today)){
+//            TicketRepository ticketRepository = new TicketRepository();
+//            List<Ticket> tickets = ticketRepository.getAllTicket();
+//            List<Ticket> eventsTickets = tickets.stream().filter(t -> t.getEvent().equals(event)).collect(Collectors.toList());
+//            if (eventsTickets.size()<20){
+//                return eventsTickets.size();
+//            }
+//        }
+//        return null;
+//    }
     public Event createEvent(Event event){
-//        validate(event);
+        validate(event);
         return eventRepository.save(event);
     }
 
@@ -59,6 +63,7 @@ public class EventService {
     }
 
     public Event updateEvent(Event event){
+        validate(event);
         return eventRepository.update(event);
     }
 
@@ -66,13 +71,18 @@ public class EventService {
         return eventRepository.delete(event);
     }
 
+
+
     private void validate(Event event){
         Date today = new Date();
-        if (event.getName().isBlank() || event.getLocation().isBlank() || event.getDescription().isBlank()){
-            throw new IllegalArgumentException("All fields needed");
-        }
-        if (event.getDate().before(today)){
-            throw new IllegalArgumentException("Date not valid");
+        if (event.getName().isBlank()){
+            throw new IllegalArgumentException("Fields Name Needed");
+        }else if(event.getLocation().isBlank()){
+            throw new IllegalArgumentException("Fields Location Needed");
+        }else if(event.getDescription().isBlank()){
+            throw new IllegalArgumentException("Fields Description Needed");
+        } else if(event.getDate().before(today)){
+            throw new IllegalArgumentException("Date Not Valid Because Is Before Date Now");
         }
     }
 }
