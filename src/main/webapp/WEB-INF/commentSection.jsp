@@ -22,7 +22,8 @@
             <td>${comment.text}</td>
             <td>${comment.review}</td>
             <td>${comment.event.name}</td>
-            <td><a href="deleteComment?id=${comment.id}">Delete</a></td>
+            <td><a href="deleteComment?id=${comment.id}">Delete</a>
+            </td>
         </tr>
     </c:forEach>
 </table>
@@ -39,5 +40,13 @@
     <input type="submit" value="Add Comment">
 </form>
 
+<br>
+<h6>edit</h6>
+<form action="editComment" method="post">
+    <input type="text" name="idComment" placeholder="id" required><br>
+    <input type="text" name="newCommentText" placeholder="text" required><br>
+    <input type="number" name="newReview" placeholder="rate" required><br>
+    <input type="submit" value="Update Comment">
+</form>
 </body>
 </html>

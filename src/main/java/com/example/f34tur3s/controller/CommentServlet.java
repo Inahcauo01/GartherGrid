@@ -25,16 +25,53 @@ public class CommentServlet extends HttpServlet {
         String action = req.getServletPath();
         if (action.equalsIgnoreCase("/deleteComment")){
             doDelete(req, resp);
-        }else {
+        }else if (action.equalsIgnoreCase("/editComment")) {
+            editComment(req, resp);
+        }
+        else {
             List<Comment> comments = new CommentService().getAllComments();
             req.setAttribute("comments", comments);
             req.getRequestDispatcher("/WEB-INF/commentSection.jsp").forward(req, resp);
         }
+    }
 
+    private void editComment(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Long commentId = Long.valueOf(req.getParameter("idComment"));
+        String newCommentText = req.getParameter("newCommentText");
+        Integer newReview = Integer.valueOf(req.getParameter("newReview"));
+
+        CommentService commentService = new CommentService();
+        Comment existingComment = commentService.getCommentById(commentId);
+
+        if (existingComment != null) {
+            existingComment.setText(newCommentText);
+            existingComment.setReview(newReview);
+            commentService.updateComment(existingComment);
+        }
+        resp.sendRedirect(req.getContextPath() + "/comments");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String action = req.getServletPath();
+        CommentService commentService = new CommentService();
+        if (action.equalsIgnoreCase("/editComment")) {
+
+            Long commentId = Long.valueOf(req.getParameter("idComment"));
+            String newCommentText = req.getParameter("newCommentText");
+            Integer newReview = Integer.valueOf(req.getParameter("newReview"));
+
+            commentService = new CommentService();
+            Comment existingComment = commentService.getCommentById(commentId);
+
+            if (existingComment != null) {
+                existingComment.setText(newCommentText);
+                existingComment.setReview(newReview);
+                commentService.updateComment(existingComment);
+            }
+//            resp.sendRedirect(req.getContextPath() + "/comments");
+        } else{
+
         String commentText = req.getParameter("commentText");
         Integer review = Integer.valueOf(req.getParameter("review"));
 
@@ -45,12 +82,13 @@ public class CommentServlet extends HttpServlet {
 
         Comment comment = new Comment(commentText, review, user, event);
 
-        CommentService commentService = new CommentService();
         Comment c = commentService.createComment(comment);
+        }
 
         List<Comment> comments = commentService.getAllComments();
         req.setAttribute("comments", comments);
         req.getRequestDispatcher("/WEB-INF/commentSection.jsp").forward(req, resp);
+
     }
 
     @Override
