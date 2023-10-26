@@ -20,7 +20,7 @@ public class CategoryService {
     }
 
 
-    public Category saveCategory(String name, String description, String image) throws IOException {
+    public Category saveCategory(String name, String description, String image) {
         Category category = new Category(name, description, image);
         category.setImage(image);
         return categoryRepository.createCategory(category);
