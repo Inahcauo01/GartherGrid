@@ -81,8 +81,12 @@ public class EventService {
             throw new IllegalArgumentException("Fields Location Needed");
         }else if(event.getDescription().isBlank()){
             throw new IllegalArgumentException("Fields Description Needed");
-        } else if(event.getDate().before(today)){
+        }else if(event.getDate() == null){
+            throw new IllegalArgumentException("Fields Date Needed");
+        }else if(event.getDate().before(today)) {
             throw new IllegalArgumentException("Date Not Valid Because Is Before Date Now");
+        }else if(event.getHour() == null){
+            throw new IllegalArgumentException("Fields Hour Needed");
         }
     }
 }
