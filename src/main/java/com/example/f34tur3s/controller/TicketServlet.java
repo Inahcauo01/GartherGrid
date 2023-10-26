@@ -7,7 +7,6 @@ import com.example.f34tur3s.repository.EventRepository;
 import com.example.f34tur3s.service.EventService;
 import com.example.f34tur3s.service.TicketService;
 import com.example.f34tur3s.service.dto.ResponseDTO;
-import com.example.f34tur3s.utils.EntityManagerUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,14 +17,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "ticket", value = {"/pages/reservation-ticket"})
-//@WebServlet(name = "ticket", urlPatterns = {"/reservation-ticket"})
 public class TicketServlet extends HttpServlet {
     EventService eventService;
 
     @Override
     public void init() throws ServletException {
-        EntityManager em = EntityManagerUtil.getEntityManager();
-        EventRepository eventRepository = new EventRepository();
         eventService = new EventService();
     }
 
@@ -55,16 +51,4 @@ public class TicketServlet extends HttpServlet {
         }
     }
 
-    protected void reservation(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Integer quantity = Integer.valueOf(req.getParameter("number-ticket"));
-        User user = (User) req.getSession().getAttribute("user");
-        Long id_event = Long.valueOf(req.getParameter("id"));
-        Event event = eventService.getEventById(id_event);
-
-        //Ticket
-        Ticket ticket = new Ticket(quantity, event, user);
-        TicketService ticketService = new TicketService();
-        ticketService.insertTicketService(ticket);
-        resp.sendRedirect("events");
-    }
 }

@@ -1,8 +1,6 @@
 package com.example.f34tur3s.controller;
 
-import com.example.f34tur3s.domain.Role;
 import com.example.f34tur3s.domain.User;
-import com.example.f34tur3s.service.UserAlreadyExistsException;
 import com.example.f34tur3s.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
