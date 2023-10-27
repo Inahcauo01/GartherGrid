@@ -43,17 +43,34 @@ public class CommentService {
         if (comment == null) {
             throw new IllegalArgumentException("Comment cannot be null.");
         }
-        //regler testCreateCommentNull
-        if (comment.getUser() == null || comment.getUser().equals(new User())) {
+        // testCreateCommentNull
+        if (comment.getUser() == null) {
             throw new IllegalArgumentException("User must not be null.");
         }
 
-        if (comment.getText() == null || comment.getText().trim().isEmpty()) {
+        // testCreateCommentUserEmpty
+        if (comment.getUser().equals(new User())){
+            throw new IllegalArgumentException("User must not be empty.");
+        }
+
+        // testCreateCommentTextNull
+        if (comment.getText() == null) {
+            throw new IllegalArgumentException("Comment content cannot be null.");
+        }
+
+        // testCreateCommentTextEmpty
+        if (comment.getText().trim().isEmpty()) {
             throw new IllegalArgumentException("Comment content cannot be empty.");
         }
 
+        // testCreateCommentTextLengthExceeds
         if (comment.getText().length() > 250) {
             throw new IllegalArgumentException("Comment content exceeds the maximum allowed length.");
+        }
+
+        // testCreateCommentReviewNotInRange
+        if (comment.getReview() > 5 || comment.getReview() < 1){
+            throw new IllegalArgumentException("Review must be between 1 and 5 !");
         }
     }
 }

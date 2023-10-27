@@ -17,6 +17,10 @@ public class EventService {
 
     private final EventRepository eventRepository;
 
+    public EventService(EventRepository eventRepository) {
+        this.eventRepository = eventRepository;
+    }
+
     public EventService() {
         eventRepository = new EventRepository();
     }
@@ -42,15 +46,6 @@ public class EventService {
         return eventRepository.delete(event);
     }
 
-//    private void validate(Event event){
-//        Date today = new Date();
-//        if (event.getName().isBlank() || event.getLocation().isBlank() || event.getDescription().isBlank()){
-//            throw new IllegalArgumentException("All fields needed");
-//        }
-//        if (event.getDate().before(today)){
-//            throw new IllegalArgumentException("Date not valid");
-//        }
-//    }
     private void validation(Event event) {
         if (event == null) {
             throw new IllegalArgumentException("The event is null");

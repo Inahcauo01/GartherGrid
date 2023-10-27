@@ -39,6 +39,16 @@ class CommentServiceTest {
     }
 
     @Test
+    void testCreateCommentUserEmpty() {
+        Comment comment = new Comment();
+        comment.setText("text comment ");
+        comment.setReview(4);
+        comment.setUser(new User());
+
+        assertThrows(IllegalArgumentException.class, () -> commentService.createComment(comment), "User must not be empty.");
+    }
+
+    @Test
     void testCreateCommentTextNull() {
         Comment comment = new Comment();
         comment.setText(null);
@@ -73,6 +83,16 @@ class CommentServiceTest {
         Comment comment = new Comment();
         comment.setText("text comment ");
         comment.setReview(6);
+        comment.setUser(new User("username","firstname","lastname","user@gmail.com","password", "image", new Role(1,"user")));
+
+        assertThrows(IllegalArgumentException.class, () -> commentService.createComment(comment), "Review must be between 1 and 5.");
+    }
+
+    @Test
+    void testCreateCommentReviewNotInRange1() {
+        Comment comment = new Comment();
+        comment.setText("text comment ");
+        comment.setReview(-5);
         comment.setUser(new User("username","firstname","lastname","user@gmail.com","password", "image", new Role(1,"user")));
 
         assertThrows(IllegalArgumentException.class, () -> commentService.createComment(comment), "Review must be between 1 and 5.");
